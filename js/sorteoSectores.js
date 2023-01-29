@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 
-
 function iniSorteo(){
     sectorSorteado.style.backgroundColor = "";
-
+    sectorSorteado.style.fontWeight = "400";
     sectorSorteado.innerHTML = '.';
 
     setTimeout( () => {
@@ -20,7 +19,6 @@ function iniSorteo(){
     setTimeout( () => {
         sectorSorteado.innerHTML = '...';
     }, 1000);
-
 
     setTimeout( () => {
         const seleccion = setInterval(() => {
@@ -72,7 +70,6 @@ function iniSorteo(){
                     sectorSorteado.innerHTML = "11 - Saladero";
                     
                     break;
-            
                 default:
                     break;
             }
@@ -83,12 +80,7 @@ function iniSorteo(){
                 sectorSorteado.style.fontWeight = "700";
                 sectorSorteado.style.backgroundColor = "#AFEEEE";
             }
-
         }, 100)
-
     }, 1500)
-
 }
-
-
 });
