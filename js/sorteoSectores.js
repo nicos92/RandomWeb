@@ -211,7 +211,7 @@ function ventanaPrint(){
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
     ventanaPrint += `<div class="modal-header">`;
-    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Sector: ${closure.getSector()}</h3>`;
+    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Sector: "${closure.getSector()}"</h3>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;

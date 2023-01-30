@@ -11792,6 +11792,12 @@ body {
 
 }
 
+/* @media (max-width: 600px) {
+  .cuadro{
+    transform: scale(0.0);
+  }
+} */
+
 .foto:hover
 {
     border:5px solid #00d435;
