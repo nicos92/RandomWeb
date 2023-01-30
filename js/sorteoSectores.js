@@ -119,10 +119,11 @@ function ventanaPrint(){
     let ventanaPrint = ``;
 
 
-    ventanaPrint += `<page size="A4">`;
+    // ventanaPrint += `<page size="A4">`;
 
 
-    ventanaPrint += `<div >`;
+    ventanaPrint += `<div id="layoutSidenav">`;
+    
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
     ventanaPrint += `<div class="modal-header">`;
@@ -132,18 +133,23 @@ function ventanaPrint(){
     ventanaPrint += `<div class="modal-body">`;
                         
                         
-    ventanaPrint += `<h5 class="modal-title" id="fecha">${dia + ", " +  hoy+ " de "+  mes + " de "+  anio}</h5>`;
+    ventanaPrint += `<h5 class="modal-title" id="fecha">${dia + ", " +  hoy + " de "+  mes + " de "+  anio}</h5>`;
     ventanaPrint += `</div>`;
 
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+
+    ventanaPrint += `<div class="cuadro">`;
+    ventanaPrint += `<img src="css/logo-senasav2.jpg" alt="">`;
+
     ventanaPrint += `</div>`;
 
     ventanaPrint += `<div class="card mb-4">`;
-    // ventanaPrint += `<div class="card-header">`;
-    // ventanaPrint += `<i class="fas fa-table me-1"></i>`;
-    // ventanaPrint += `Lista`;
-    // ventanaPrint += `</div>`;
+    ventanaPrint += `<div class="card-header">`;
+    ventanaPrint += `<i class="fas fa-table me-1"></i>`;
+    ventanaPrint += `Lista`;
+    ventanaPrint += `</div>`;
     ventanaPrint += `<table id="">`;
     ventanaPrint += `<thead>`;
     ventanaPrint += `<tr>`;
@@ -205,7 +211,7 @@ function ventanaPrint(){
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
     ventanaPrint += `<div class="modal-header">`;
-    ventanaPrint += `<h4 class="modal-title" id="sectorSorteado">${closure.getSector()}</h4>`;
+    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Sector: ${closure.getSector()}</h3>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
@@ -221,7 +227,7 @@ function ventanaPrint(){
         
 
 
-    ventanaPrint += `</page>`;
+    // ventanaPrint += `</page>`;
 
 
     return ventanaPrint;

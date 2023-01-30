@@ -1,6 +1,11 @@
 body {
     background: rgb(204,204,204); 
+    padding-top: 0px;
+    margin-top: 0px;
+    position: relative;
   }
+
+
   page {
     background: white;
     display: block;
@@ -10,12 +15,12 @@ body {
   }
   page[size="A4"] {  
     width: 21cm;
-    height: 29.7cm; 
+    height: 29cm; 
   }
-  /* page[size="A4"][layout="landscape"] {
-    width: 29.7cm;
+  page[size="A4"][layout="landscape"] {
+    width: 29cm;
     height: 21cm;  
-  } */
+  }
   
   @media print {
     body, page {
