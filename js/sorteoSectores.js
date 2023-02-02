@@ -16,6 +16,7 @@ const closure = (function(){
     return {setSector, getSector};
 
 })();
+
     let contador = 0;
 
 
@@ -141,7 +142,7 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
 
     ventanaPrint += `<div class="cuadro">`;
-    ventanaPrint += `<img src="css/logo-senasav2.jpg" alt="">`;
+    ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
 
     ventanaPrint += `</div>`;
 

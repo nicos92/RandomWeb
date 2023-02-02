@@ -14,18 +14,13 @@
         <link href="css/styles.css" rel="stylesheet" />
 
         <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.css" >
 
         <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
         <script src="assets/demo/all.js"></script>
 
-        <script src="js/sorteoSectores.js"></script>
+        <script src="js/tropas.js"></script>
 
-        <!-- es para convertir archivos excel -->
-        
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
-        <script type="text/javascript" src="js/convertXlsx.js"></script> -->
     </head>
     <body id="body" class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -40,75 +35,79 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Sorteos</div>
+                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Tropas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="tropas.html">Agregar Lista</a>
+                                    <a class="nav-link" href="#">Listas</a>
+                                </nav>
+                            </div>
                             <a class="nav-link" href="sectores.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Sectores
                             </a>
-                            <a class="nav-link" href="tropas.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tropas
-                            </a>
+
                         </div>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
+                    <div id="contenedor" class="container-fluid px-4">
                         <h1 class="mt-4">Tropas                         
-                            <button id="agregarLista" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Agregar Lista
-                            </button>
+
                         </h1>
                         
                         <div class="cuadro">
-                            <img src="css/logo-senasav2.jpg" alt="">
+                            <img src="css/senasaV3.png" alt="">
                         </div>
+                        <hr>
                         
                         <!-- FORMULARIO -->
+
                         <form >
 
-                            <div class="form-group"> <!-- Tropa -->
+                            <div class="form-group"> 
                                 <label for="numTropa" class="control-label">Numero de Tropa</label>
                                 <input type="number" class="form-control" id="numTropa" name="tropa" placeholder="15001">
                             </div>    
                         
-                            <div class="form-group"> <!-- lote -->
+                            <div class="form-group"> 
                                 <label for="numLote" class="control-label">Numero de Lote</label>
                                 <input type="number" class="form-control" id="numLote" name="lote" placeholder="01">
                             </div>      
  
-                            
-                            <div class="form-group mb-2"> <!-- Button -->
-                                <button type="submit" class="btn btn-primary">Agregar Tropa</button>
+                            <br>
+                            <div class="form-group"> 
+                                <button id="agregarTropa"  type="button"  class="btn btn-primary">Agregar Tropa</button>
 
                             </div>  
                             <hr>
                             
-                        </form>
+                        </form> 
 
                         <div class="card mb-4">
-                            <div class="card-header">
-                                
-                                <i class="fas fa-table me-1"></i>
-                                Lista
-                                
-                            </div>
+                            <div class="card-header"><i class="fas fa-table me-1"></i> Lista </div>
+
                             
                             <div class="card-body">
-                                <div class="form-group mb-2"> <!-- Button -->
-                                    <button type="button" class="btn btn-success">Guardar Lista</button>
+                                <div id="guardarLista" class="form-group mb-2"> 
+                                    <button id="btnGuardarLista" type="button" type="button" class="btn btn-success">Guardar Lista</button>
                                 </div> 
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th >ID</th>
                                             <th >Tropa</th>
+                                            <th >Lote</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                  
-                                    </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -120,7 +119,7 @@
             </div>
         </div>
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
-        <script src="assets/demo/bootstrap-bundle.min.js"></script>
+        <!-- <script src="assets/demo/bootstrap-bundle.min.js"></script> -->
 
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
         <script src="assets/demo/bootstrap513BundleMin.js"></script>
@@ -131,5 +130,6 @@
         <script src="assets/demo/simpleDataTable.js"></script>
 
         <script src="js/datatables-simple-demo.js"></script>
+
     </body>
 </html>

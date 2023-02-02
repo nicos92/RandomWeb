@@ -21,11 +21,6 @@
 
         <script src="js/sorteoSectores.js"></script>
 
-        <!-- es para convertir archivos excel -->
-        
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
-        <script type="text/javascript" src="js/convertXlsx.js"></script> -->
     </head>
     <body id="body" class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -40,14 +35,23 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Sorteos</div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Tropas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="tropas.html">Agregar Lista</a>
+                                    <a class="nav-link" href="#">Listas</a>
+                                </nav>
+                            </div>
                             <a class="nav-link" href="sectores.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Sectores
                             </a>
-                            <a class="nav-link" href="tropas.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tropas
-                            </a>
+
                         </div>
                     </div>
                 </nav>
@@ -60,6 +64,7 @@
                                 Sortear
                             </button>
                         </h1>
+                        <hr>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -83,7 +88,7 @@
                         </div>
 
                         <div class="cuadro">
-                            <img src="css/logo-senasav2.jpg" alt="">
+                            <img src="css/senasaV3.png" alt="">
             
                         </div>
                         <div class="card mb-4">
