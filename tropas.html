@@ -55,99 +55,66 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Sectores                         
-                            <button id="sorteo" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Sortear
+                        <h1 class="mt-4">Tropas                         
+                            <button id="agregarLista" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Agregar Lista
                             </button>
                         </h1>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">El Sector Sorteado es:</h5>
-                                        
-                                    </div>
-                                    <div class="modal-body" id="sectorSorteado">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        
-                                        <button id="imprimir" type="button" class="btn btn-primary" data-bs-dismiss="modal" >Imprimir</button>
-                                        <button id="closeModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        
                         <div class="cuadro">
                             <img src="css/logo-senasav2.jpg" alt="">
-            
                         </div>
+                        
+                        <!-- FORMULARIO -->
+                        <form >
+
+                            <div class="form-group"> <!-- Tropa -->
+                                <label for="numTropa" class="control-label">Numero de Tropa</label>
+                                <input type="number" class="form-control" id="numTropa" name="tropa" placeholder="15001">
+                            </div>    
+                        
+                            <div class="form-group"> <!-- lote -->
+                                <label for="numLote" class="control-label">Numero de Lote</label>
+                                <input type="number" class="form-control" id="numLote" name="lote" placeholder="01">
+                            </div>      
+ 
+                            
+                            <div class="form-group mb-2"> <!-- Button -->
+                                <button type="submit" class="btn btn-primary">Agregar Tropa</button>
+
+                            </div>  
+                            <hr>
+                            
+                        </form>
+
                         <div class="card mb-4">
                             <div class="card-header">
+                                
                                 <i class="fas fa-table me-1"></i>
                                 Lista
+                                
                             </div>
+                            
                             <div class="card-body">
+                                <div class="form-group mb-2"> <!-- Button -->
+                                    <button type="button" class="btn btn-success">Guardar Lista</button>
+                                </div> 
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th >ID</th>
-                                            <th >Sector</th>
+                                            <th >Tropa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr >
-                                            <td >01</td>
-                                            <td>Playa de faena</td>
-                                        </tr>
-                                        <tr >
-                                            <td >02</td>
-                                            <td >Cuarteo</td>
-                                        </tr>
-                                        <tr >
-                                            <td >03</td>
-                                            <td >Despostada</td>
-                                        </tr>
-                                        <tr >
-                                            <td >04</td>
-                                            <td >Menudencias</td>
-                                        </tr>
-                                        <tr >
-                                            <td >05</td>
-                                            <td >Triperia</td>
-                                        </tr>
-                                        <tr>
-                                            <td >06</td>
-                                            <td>Exteriores - Corrales</td>
-                                        </tr>
-                                        <tr >
-                                            <td >07</td>
-                                            <td >Playa Emergencias</td>
-                                        </tr>
-                                        <tr >
-                                            <td >08</td>
-                                            <td >Melter</td>
-                                        </tr>
-                                        <tr >
-                                            <td >09</td>
-                                            <td >Lavadero de Roldanas</td>
-                                        </tr>
-                                        <tr >
-                                            <td >10</td>
-                                            <td >Nonatos</td>
-                                        </tr>
-                                        <tr >
-                                            <td >11</td>
-                                            <td >Saladero</td>
-                                        </tr>
+                                  
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+
+                        
                     </div>
                 </main>
             </div>

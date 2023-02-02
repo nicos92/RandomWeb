@@ -11812,3 +11812,10 @@ img
     object-position: 10% 100%;
 }
 
+.control-label{
+  font-weight: bolder;
+}
+
+form{
+  width: 25%;
+}
