@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     const Lista_Tropas = (function(){
         let _listas_Tropas = [];
+        
     
         function set_List_Tropas(lista_tropa){
 
@@ -19,15 +20,19 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         function setLSList_Tropas(){
 
-            let _listas_Tropas = JSON.stringify(_listas_Tropas);
+            _listas_Tropas = JSON.stringify(_listas_Tropas);
             localStorage.setItem("ls_List_tropas", _listas_Tropas);
 
         }
 
         function getLSList_Tropas(){
 
-            let datos = localStorage.getItem("ls_List_tropas");
-            _listas_Tropas = JSON.parse(datos);
+            if( localStorage.getItem("ls_List_tropas")){
+                _listas_Tropas = localStorage.getItem("ls_List_tropas");
+                _listas_Tropas = JSON.parse(_listas_Tropas);
+            }
+
+            return _listas_Tropas;
 
         }
 
@@ -40,18 +45,13 @@ document.addEventListener('DOMContentLoaded', () =>{
         let _tropas = [];
     
         function set_Tropas(tropa){
-
             _tropas = [ ..._tropas, tropa];
-            
         }
 
         function get_Tropas(){
-
             return _tropas;
-
         }
 
-    
         return {set_Tropas, get_Tropas};
     
     })();
@@ -80,29 +80,21 @@ document.addEventListener('DOMContentLoaded', () =>{
         let _id = 0;
 
         function sum_Id(){
-
             _id++;
-
         }
 
         function get_Id(){
-
             return _id;
-
         }
 
         function set_LS_Id(){
-
             let _id = JSON.stringify(_id);
             localStorage.setItem("ls_Id", _id);
-
         }
 
         function getLS_Id(){
-
             let datos = localStorage.getItem("ls_Id");
             _id = JSON.parse(datos);
-
         }
 
         return {sum_Id, get_Id,set_LS_Id,getLS_Id};
@@ -134,14 +126,15 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         numTropa.focus();
 
-        
-        // contenedor.innerHTML += ventanaAgregarLista();
     });
     
     btnGuardarLista.addEventListener("click", () => {
         
+        Lista_Tropas.getLSList_Tropas();
         Lista_Tropas.set_List_Tropas(Tropas.get_Tropas());
+        Lista_Tropas.setLSList_Tropas();
         console.log(Lista_Tropas.get_List_Tropas());
+        location.reload();
     });
 
 
