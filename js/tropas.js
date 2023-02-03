@@ -1,6 +1,19 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
+
+    const numTropa=  document.getElementById('numTropa');
+    numTropa.addEventListener('input',function(){
+        if (this.value.length > 6) 
+        this.value = this.value.slice(0,6); 
+        });
+
+    const numLote=  document.getElementById('numLote');
+    numLote.addEventListener('input',function(){
+        if (this.value.length > 2) 
+        this.value = this.value.slice(0,2); 
+        });
+
     const Lista_Tropas = (function(){
         let _listas_Tropas = [];
         
@@ -58,27 +71,27 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     })();
 
-    const contadorId = (function(){
+    // const contadorId = (function(){
 
-        let _id = 0;
+    //     let _id = 0;
 
-        function sum_Id(){
-            _id++;
-        }
-        function get_Id(){
-            return _id;
-        }
-        function set_LS_Id(){
-            let _id = JSON.stringify(_id);
-            localStorage.setItem("ls_Id", _id);
-        }
-        function getLS_Id(){
-            let datos = localStorage.getItem("ls_Id");
-            _id = JSON.parse(datos);
-        }
-        return {sum_Id, get_Id,set_LS_Id,getLS_Id};
+    //     function sum_Id(){
+    //         _id++;
+    //     }
+    //     function get_Id(){
+    //         return _id;
+    //     }
+    //     function set_LS_Id(){
+    //         let _id = JSON.stringify(_id);
+    //         localStorage.setItem("ls_Id", _id);
+    //     }
+    //     function getLS_Id(){
+    //         let datos = localStorage.getItem("ls_Id");
+    //         _id = JSON.parse(datos);
+    //     }
+    //     return {sum_Id, get_Id,set_LS_Id,getLS_Id};
 
-    })();
+    // })();
 
     agregarTropa.addEventListener("click", () => {
 
@@ -90,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             lote: _numLote
         }
 
-        contadorId.sum_Id();
+        // contadorId.sum_Id();
         Tropa.set_Tropa(_Tropa);
         Tropas.set_Tropas(_Tropa);
         datatablesSimple.innerHTML += ventanaAgregarLista();
@@ -109,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 function ventanaAgregarLista(){
 
     let ventanaAgregarLista = "";
-    ventanaAgregarLista = `<tr><td>${contadorId.get_Id()}</td><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
+    ventanaAgregarLista = `<tr><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
 
     return ventanaAgregarLista;
 
