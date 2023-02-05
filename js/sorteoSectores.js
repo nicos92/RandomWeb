@@ -17,7 +17,7 @@ const closure = (function(){
 
 })();
 
-    let contador = 0;
+
 
 
     imprimir.addEventListener("click", () => {
@@ -38,6 +38,8 @@ const closure = (function(){
 
     })
 
+    let contador = 0;
+
 function iniSorteo(){
 
     imprimir.disabled = true;
@@ -46,58 +48,14 @@ function iniSorteo(){
     sectorSorteado.style.fontWeight = "400";
     sectorSorteado.style.backgroundColor = "";
     setTimeout( () => {
+
         const seleccion = setInterval(() => {
             contador +=1;
             let nroAzar = Math.floor(Math.random() * 11) + 1;
+
+            const sectores = ['01 - Playa de faena',  "02 - Cuarteo", "03 - Despostada", "04 - Menudencias", "05 - Triperia", "06 - Exteriores - Corrales", "07 - Playa de Emergencias", "08 - Melter", "09 - Lavadero de Roldanas", "10 - Nonatos", "11 - Saladero"];
             
-            switch (nroAzar) {
-                case 1:
-                    sectorSorteado.innerHTML = '01 - Playa de faena';
-                    
-                    break;
-                case 2:
-                    sectorSorteado.innerHTML = "02 - Cuarteo";
-                    
-                    break;
-                case 3:
-                    sectorSorteado.innerHTML = "03 - Despostada";
-                    
-                    break;
-                case 4:
-                    sectorSorteado.innerHTML = "04 - Menudencias";
-                    
-                    break;
-                case 5:
-                    sectorSorteado.innerHTML = "05 - Triperia";
-                    
-                    break;
-                case 6:
-                    sectorSorteado.innerHTML = "06 - Exteriores - Corrales";
-                    
-                    break;
-                case 7:
-                    sectorSorteado.innerHTML = "07 - Playa de Emergencias";
-                    
-                    break;
-                case 8:
-                    sectorSorteado.innerHTML = "08 - Melter";
-                    
-                    break;
-                case 9:
-                    sectorSorteado.innerHTML = "09 - Lavadero de Roldanas";
-                    
-                    break;
-                case 10:
-                    sectorSorteado.innerHTML = "10 - Nonatos";
-                    
-                    break;
-                case 11:
-                    sectorSorteado.innerHTML = "11 - Saladero";
-                    
-                    break;
-                default:
-                    break;
-            }
+            sectorSorteado.innerHTML = sectores[ nroAzar -1];
 
             if( contador > 15){
                 clearInterval(seleccion);
@@ -106,10 +64,10 @@ function iniSorteo(){
                 sectorSorteado.style.backgroundColor = "#AFEEEE";
                 imprimir.disabled = false;
                 closure.setSector(sectorSorteado.innerText) ;
-                console.log(closure.getSector());
 
             }
         }, 50)
+
     }, 1000)
 }
 
@@ -118,10 +76,6 @@ function ventanaPrint(){
     let [dia, hoy, mes, anio] = definirFecha();
 
     let ventanaPrint = ``;
-
-
-    // ventanaPrint += `<page size="A4">`;
-
 
     ventanaPrint += `<div id="layoutSidenav">`;
     
@@ -225,12 +179,6 @@ function ventanaPrint(){
     ventanaPrint += `<div class="firma">Firma</div>`;
     ventanaPrint += `</div>`;
 
-        
-
-
-    // ventanaPrint += `</page>`;
-
-
     return ventanaPrint;
 }
 
@@ -244,17 +192,16 @@ function definirFecha(){
     const hora = fecha.getHours();
     const minutos = fecha.getMinutes();
     const seg = fecha.getSeconds();
-    console.log(anio, mes, hoy, dia, hora, minutos, seg); 
 
     function getDia(dia){
-        const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
-        return dias[ dia - 1 ];
+        const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+        return dias[ dia];
     }
 
     dia = getDia(dia);
 
     function getMes(mes){
-        let meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        const meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
         return meses[ mes - 1];
     }
 
