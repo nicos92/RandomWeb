@@ -237,83 +237,28 @@ function ventanaPrint(){
 function definirFecha(){
 
     const fecha = new Date();
-    let anio = fecha.getFullYear();
-    let mes = fecha.getMonth() + 1; 
-    let hoy = fecha.getDate();
-    let dia = fecha.getDay();
+    let anio = fecha.getFullYear(); // AÑo 2023
+    let mes = fecha.getMonth() + 1; // mes del 0 al 11
+    let hoy = fecha.getDate(); // fecha del 1 al 31
+    let dia = fecha.getDay(); // dia lunes, martes ...
     const hora = fecha.getHours();
     const minutos = fecha.getMinutes();
     const seg = fecha.getSeconds();
     console.log(anio, mes, hoy, dia, hora, minutos, seg); 
 
-    switch (dia) {
-        case 1: dia = "Lunes";
-            
-            break;
-        case 2: dia = "Martes";
-            
-            break;
-        case 3: dia = "Miercoles";
-            
-            break;
-        case 4: dia = "Jueves";
-            
-            break;
-        case 5: dia = "Viernes";
-            
-            break;
-        case 6: dia = "Sabado";
-            
-            break;
-        case 7: dia = "Domingo";
-            
-            break;
-    
-        default:
-            break;
+    function getDia(dia){
+        const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
+        return dias[ dia - 1 ];
     }
 
-    switch (mes) {
-        case 1: mes = "Enero";
-            
-            break;
-        case 2: mes = "Febrero";
-            
-            break;
-        case 3: mes = "Marzo";
-            
-            break;
-        case 4: mes = "Abril";
-            
-            break;
-        case 5: mes = "Mayo";
-            
-            break;
-        case 6: mes = "Junio";
-            
-            break;
-        case 7: mes = "Julio";
-            
-            break;
-        case 8: mes = "Agosto";
-            
-            break;
-        case 9: mes = "Septiembre";
-            
-            break;
-        case 10: mes = "Octubre";
-            
-            break;
-        case 11: mes = "Noviembre";
-            
-            break;
-        case 12: mes = "Diciembre";
-            
-            break;
-    
-        default:
-            break;
+    dia = getDia(dia);
+
+    function getMes(mes){
+        let meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        return meses[ mes - 1];
     }
+
+    mes = getMes(mes);
 
     return [dia, hoy, mes, anio];
 
