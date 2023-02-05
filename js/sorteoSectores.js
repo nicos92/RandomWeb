@@ -38,10 +38,11 @@ const closure = (function(){
 
     })
 
-    let contador = 0;
+
 
 function iniSorteo(){
 
+    let contador = 0;
     imprimir.disabled = true;
     sectorSorteado.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 
@@ -50,10 +51,13 @@ function iniSorteo(){
     setTimeout( () => {
 
         const seleccion = setInterval(() => {
-            contador +=1;
-            let nroAzar = Math.floor(Math.random() * 11) + 1;
 
             const sectores = ['01 - Playa de faena',  "02 - Cuarteo", "03 - Despostada", "04 - Menudencias", "05 - Triperia", "06 - Exteriores - Corrales", "07 - Playa de Emergencias", "08 - Melter", "09 - Lavadero de Roldanas", "10 - Nonatos", "11 - Saladero"];
+
+            contador +=1;
+            const cantidad = sectores.length;
+            let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+
             
             sectorSorteado.innerHTML = sectores[ nroAzar -1];
 
