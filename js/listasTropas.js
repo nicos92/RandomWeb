@@ -52,10 +52,10 @@ function cards(){
                 card += `<div class="card-header py-3">`;
                     card += `<h6 id="titlleCard" class="m-0 font-weight-bold text-primary" >Grupo "${i+1}"</h6>`;
                 card += `</div>`;
-                card += `<div id="bodyCard" class="card-body">`;
+                card += `<div id="bodyCard" class="card-body fs-5">`;
                     
                 for( j=0 ; j <= listas_tropas[i].length - 1 ; j++){
-                    card += listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + "; ";
+                    card += listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + " ; ";
                 }
 
 
