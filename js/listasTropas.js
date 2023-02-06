@@ -54,15 +54,21 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     windowCards.innerHTML += cards();
 
+    query();
 
     function query(){
 
-        function queryId(e){
+        let lista = Lista_Tropas.getLSList_Tropas();
 
+
+        for (let i= 0; i <= lista.length -1; i++) 
+        {
+            let tarjeta = document.getElementById(i);
+            tarjeta.addEventListener("click", (e) => {
+                let select  = e.target.id;
+                sortearTropa(select);
+            });
         }
-
-
-        
     }
 
     function sortearTropa(select){
@@ -102,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 
     }
-    query();
+    
 
 
 
