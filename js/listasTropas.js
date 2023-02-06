@@ -1,6 +1,23 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
+    const closure = (function(){
+
+        let _sector;
+    
+        function setTropa(sector){
+            _sector = sector;
+            return _sector;
+        }
+    
+        function getTropa(){
+            return _sector;
+        }
+    
+        return {setTropa, getTropa};
+    
+    })();
+
     
     const Lista_Tropas = (function(){
         let _listas_Tropas = [];
@@ -38,6 +55,56 @@ document.addEventListener('DOMContentLoaded', () =>{
     windowCards.innerHTML += cards();
 
 
+    function query(){
+
+        function queryId(e){
+
+        }
+
+
+        
+    }
+
+    function sortearTropa(select){
+
+        let listas_tropas = Lista_Tropas.getLSList_Tropas();
+
+        let lista = listas_tropas[select];
+        let contador = 0;
+
+        const cantidad = lista.length;
+
+        tropaSorteada.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+        tropaSorteada.style.fontWeight = "400";
+        tropaSorteada.style.backgroundColor = "";
+
+        setTimeout( () => {
+
+            const seleccion = setInterval(() => {
+
+                contador +=1;
+                let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+    
+                
+                tropaSorteada.innerHTML = lista[ nroAzar -1].tropa + "-" + lista[ nroAzar -1].lote;
+    
+                if( contador > 15){
+                    clearInterval(seleccion);
+                    contador = 0;
+                    tropaSorteada.style.fontWeight = "700";
+                    tropaSorteada.style.backgroundColor = "#AFEEEE";
+                    imprimir.disabled = false;
+                    closure.setTropa(tropaSorteada.innerText) ;
+                }
+            }, 50)
+    
+        }, 1000)
+
+
+    }
+    query();
+
+
 
 
 function cards(){
@@ -58,12 +125,16 @@ function cards(){
                 card += `</div>`;
                 card += `<div class="row " >`;
                     card += `<div class="col-lg6 d-flex justify-content-around">`;
-                        card += `<a href="#" class="btn btn-primary btn-icon-split">`;
-                            card += `<span class="icon text-white-50">`;
-                                card += `<i class="fas fa-flag"></i>`;
-                            card += `</span>`;
-                            card += `<span class="text"> Sortear</span>`;
-                        card += `</a>`;
+
+                    card += `<button id="${i}" type="button" class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" >Sortear</button>`;
+
+                        // card += `<a id="${i}" href="#" class="btn btn-primary btn-icon-split">`;
+                        //     card += `<span class="icon text-white-50">`;
+                        //         card += `<i class="fas fa-flag"></i>`;
+                        //     card += `</span>`;
+                        //     card += `<span class="text"> Sortear</span>`;
+                        // card += `</a>`;
+
                         card += `<a href="#" class="btn btn-warning btn-icon-split">`;
                             card += `<span class="icon text-white-50">`;
                                 card += `<i class="fas fa-exclamation-triangle"></i>`;

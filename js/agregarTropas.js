@@ -119,13 +119,13 @@ document.addEventListener('DOMContentLoaded', () =>{
         location.reload();
     });
 
-function ventanaAgregarLista(){
+    function ventanaAgregarLista(){
 
-    let ventanaAgregarLista = "";
-    ventanaAgregarLista = `<tr><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
+        let ventanaAgregarLista = "";
+        ventanaAgregarLista = `<tr><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
 
-    return ventanaAgregarLista;
+        return ventanaAgregarLista;
 
-};
+    };
 
 });
