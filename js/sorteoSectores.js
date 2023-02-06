@@ -90,21 +90,15 @@ function ventanaPrint(){
     ventanaPrint += `<h4 class="modal-title" id="exampleModalLabel">Resultado del Sorteo:</h4>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `<div class="modal-body">`;
-                        
-                        
     ventanaPrint += `<h5 class="modal-title" id="fecha">${dia + ", " +  hoy + " de "+  mes + " de "+  anio}</h5>`;
     ventanaPrint += `</div>`;
-
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
-
     ventanaPrint += `<div class="cuadro">`;
     ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
-
     ventanaPrint += `</div>`;
-
-    ventanaPrint += `<div class="card mb-4">`;
+    ventanaPrint += `<div class="card mb-4 col-lg-6" >`;
     ventanaPrint += `<div class="card-header">`;
     ventanaPrint += `<i class="fas fa-table me-1"></i>`;
     ventanaPrint += `Lista`;

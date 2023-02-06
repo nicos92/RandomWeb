@@ -11720,12 +11720,12 @@ body {
   width: 5%;
 }
 
-.tabla{
+/* .tabla{
 
 
 	color: antiquewhite;
 	text-align: center;
-	/* border: 1px solid antiquewhite; */
+	border: 1px solid antiquewhite;
 	border-radius: 20px;
 
 }
@@ -11737,18 +11737,18 @@ thead{
 	font-weight: bolder;
 	border-bottom: 3px solid antiquewhite;
 
-}
+} */
 
-th, td{
+/* th, td{
 
-	/* border: 2px solid antiquewhite; */
+	border: 2px solid antiquewhite; 
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 
 	
-}
+} */
 
 tr:nth-child(even){
 	background-color:  rgb(236, 236, 236);
