@@ -47,28 +47,19 @@ document.addEventListener('DOMContentLoaded', () =>{
         return {set_List_Tropas, get_List_Tropas, setLSList_Tropas, getLSList_Tropas};
         
     })();
-    
-    
-    if( Lista_Tropas.getLSList_Tropas().length == 0) windowCards.innerHTML += cardSinTropas();
-    
-
-    windowCards.innerHTML += cards();
-
-    query();
 
     function query(){
-
         let lista = Lista_Tropas.getLSList_Tropas();
-
-
         for (let i= 0; i <= lista.length -1; i++) 
         {
             let tarjeta = document.getElementById(i);
-            tarjeta.addEventListener("click", (e) => {
-                let select  = e.target.id;
-                sortearTropa(select);
-            });
+            tarjeta.addEventListener("click", sorteo)
         }
+    }
+
+    function sorteo(e){
+        let select  = e.target.id;
+        sortearTropa(select);
     }
 
     function sortearTropa(select){
@@ -108,10 +99,12 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 
     }
-    
 
+    if( Lista_Tropas.getLSList_Tropas().length == 0) windowCards.innerHTML += cardSinTropas();
 
+    windowCards.innerHTML += cards();
 
+    query();
 
 function cards(){
 
@@ -132,7 +125,7 @@ function cards(){
                 card += `<div class="row " >`;
                     card += `<div class="col-lg6 d-flex justify-content-around">`;
 
-                    card += `<button id="${i}" type="button" class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" >Sortear</button>`;
+                    card += `<button id="${i}" type="button" class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" > Sortear</button>`;
 
                         // card += `<a id="${i}" href="#" class="btn btn-primary btn-icon-split">`;
                         //     card += `<span class="icon text-white-50">`;
