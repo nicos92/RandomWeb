@@ -4,17 +4,25 @@ document.addEventListener('DOMContentLoaded', () =>{
     const closure = (function(){
 
         let _sector;
+        let _id;
     
         function setTropa(sector){
             _sector = sector;
-            return _sector;
         }
     
         function getTropa(){
             return _sector;
         }
+
+        function setId(id){
+            _id = id;
+        }
+
+        function getId(){
+            return _id;
+        }
     
-        return {setTropa, getTropa};
+        return {setTropa, getTropa, setId, getId};
     
     })();
 
@@ -58,15 +66,17 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
     function sorteo(e){
-        let select  = e.target.id;
-        sortearTropa(select);
+        imprimir.disabled = true;
+        
+        closure.setId(e.target.id);
+        sortearTropa();
     }
 
-    function sortearTropa(select){
+    function sortearTropa(){
 
         let listas_tropas = Lista_Tropas.getLSList_Tropas();
 
-        let lista = listas_tropas[select];
+        let lista = listas_tropas[closure.getId()];
         let contador = 0;
 
         const cantidad = lista.length;
@@ -106,6 +116,17 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     query();
 
+    imprimir.addEventListener("click", () => {
+
+        document.getElementById("body").innerHTML = ventanaPrint();
+
+        window.print();
+
+        location.reload();
+
+    });
+
+
 function cards(){
 
     let listas_tropas = Lista_Tropas.getLSList_Tropas();
@@ -127,19 +148,11 @@ function cards(){
 
                     card += `<button id="${i}" type="button" class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" > Sortear</button>`;
 
-                        // card += `<a id="${i}" href="#" class="btn btn-primary btn-icon-split">`;
-                        //     card += `<span class="icon text-white-50">`;
-                        //         card += `<i class="fas fa-flag"></i>`;
-                        //     card += `</span>`;
-                        //     card += `<span class="text"> Sortear</span>`;
-                        // card += `</a>`;
 
-                        card += `<a href="#" class="btn btn-warning btn-icon-split">`;
-                            card += `<span class="icon text-white-50">`;
-                                card += `<i class="fas fa-exclamation-triangle"></i>`;
-                            card += `</span>`;
-                            card += `<span class="text"> Editar</span>`;
-                        card += `</a>`;
+                        // BOTON EDITAR
+
+                        card += `<button id="" type="button" class="btn btn-warning "  data-bs-toggle="modal" data-bs-target="#exampleModal" > Editar</button>`;
+
                     card += `</div>`;
                 card += `</div>`;
                 card += `<div class="my-2"></div>`;
@@ -174,6 +187,125 @@ function cardSinTropas(){
             card += `</div>`;
         card += `</div>`;
     return card;
+}
+
+function ventanaPrint(){
+
+    let lista = Lista_Tropas.getLSList_Tropas();
+    let tropas = lista[closure.getId()];
+
+    let [dia, hoy, mes, anio] = definirFecha();
+
+    let ventanaPrint = ``;
+
+    ventanaPrint += `<div id="layoutSidenav">`;
+    ventanaPrint += `<div class="modal-dialog">`;
+    ventanaPrint += `<div class="modal-content">`;
+
+    ventanaPrint += `<div class="modal-header">`;
+    ventanaPrint += `<h4 class="modal-title" id="exampleModalLabel">Resultado del Sorteo:</h4>`;
+    ventanaPrint += `</div>`;
+
+    ventanaPrint += `<div class="modal-body">`;
+    ventanaPrint += `<h5 class="modal-title" id="fecha">${dia + ", " +  hoy + " de "+  mes + " de "+  anio}</h5>`;
+    ventanaPrint += `</div>`;
+
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+
+    ventanaPrint += `<div class="cuadro">`;
+    ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
+    ventanaPrint += `</div>`;
+
+
+    ventanaPrint += `<div class="card mb-4 col-lg-4" >`;
+    ventanaPrint += `<div class="card-header">`;
+    ventanaPrint += `<i class="fas fa-table me-1"></i>`;
+    ventanaPrint += `Lista`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `<table id="datat">`;
+    ventanaPrint += `<thead>`;
+    ventanaPrint += `<tr>`;
+    ventanaPrint += `<th class="id" >Nº Ord</th>`;
+    ventanaPrint += `<th class="id" >Tropa</th>`;
+    ventanaPrint += `<th class="sector">Lote</th>`;
+    ventanaPrint += `</tr>`;
+    ventanaPrint += `</thead>`;
+    ventanaPrint += `<tbody>`;
+
+    for (let i = 0; i < tropas.length; i++) {
+        ventanaPrint += `<tr >`;
+        ventanaPrint += `<td >0${i+1}</td>`;
+        ventanaPrint += `<td >${tropas[i].tropa}</td>`;
+        ventanaPrint += `<td >${tropas[i].lote}</td>`;
+        ventanaPrint += `</tr>`;
+    }
+
+    ventanaPrint += `<tr >`;
+
+    ventanaPrint += `</tr>`;
+    ventanaPrint += `</tbody>`;
+    ventanaPrint += `</table>`;
+
+    ventanaPrint += `</div>`;
+
+    ventanaPrint += `<div >`;
+    ventanaPrint += `<div class="modal-dialog">`;
+    ventanaPrint += `<div class="modal-content">`;
+    ventanaPrint += `<div class="modal-header">`;
+    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Tropa: " ${closure.getTropa()} "</h3>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `<div >`;
+    ventanaPrint += `<div class="modal-dialog">`;
+    ventanaPrint += `<div class="modal-content">`;
+    ventanaPrint += `<div class="modal-header">`;
+    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Garron: </h3>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
+
+    ventanaPrint += `<div class="firmas">`;
+    ventanaPrint += `</div>`;
+    ventanaPrint += `<div class="firmas">`;
+    ventanaPrint += `<div class="firma">Firma</div>`;
+    ventanaPrint += `<div class="firma">Firma</div>`;
+    ventanaPrint += `</div>`;
+
+    return ventanaPrint;
+}
+
+function definirFecha(){
+
+    const fecha = new Date();
+    let anio = fecha.getFullYear(); // AÑo 2023
+    let mes = fecha.getMonth() + 1; // mes del 0 al 11
+    let hoy = fecha.getDate(); // fecha del 1 al 31
+    let dia = fecha.getDay(); // dia lunes, martes ...
+    const hora = fecha.getHours();
+    const minutos = fecha.getMinutes();
+    const seg = fecha.getSeconds();
+
+    function getDia(dia){
+        const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+        return dias[ dia];
+    }
+
+    dia = getDia(dia);
+
+    function getMes(mes){
+        const meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        return meses[ mes - 1];
+    }
+
+    mes = getMes(mes);
+
+    return [dia, hoy, mes, anio];
+
 }
 
 

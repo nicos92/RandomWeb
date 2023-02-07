@@ -18,6 +18,10 @@ const closure = (function(){
 })();
 
 
+    sorteo.addEventListener("click", () => {
+        iniSorteo();
+
+    })
 
 
     imprimir.addEventListener("click", () => {
@@ -31,12 +35,8 @@ const closure = (function(){
 
         location.reload();
 
-    })
+    });
 
-    sorteo.addEventListener("click", () => {
-        iniSorteo();
-
-    })
 
 
 
@@ -48,6 +48,7 @@ function iniSorteo(){
 
     sectorSorteado.style.fontWeight = "400";
     sectorSorteado.style.backgroundColor = "";
+
     setTimeout( () => {
 
         const seleccion = setInterval(() => {
