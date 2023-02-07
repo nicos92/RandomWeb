@@ -11819,3 +11819,27 @@ img
 form{
   width: 25%;
 }
+
+
+#columnas {
+  column-count:4;
+  column-gap:20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+#columnas li {
+  counter-increment: step-counter;
+  margin-bottom: 5px;
+}
+#columnas li::before {
+  content: counter(step-counter);
+  margin-right: 20px;
+  font-size: 80%;
+  background-color: rgb(180, 180, 180);
+  color: white;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 11px;
+}

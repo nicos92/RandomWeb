@@ -219,34 +219,40 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
 
 
-    ventanaPrint += `<div class="card mb-4 col-lg-4" >`;
+    ventanaPrint += `<div class="card mb-4 col-lg-4 p-2" >`;
     ventanaPrint += `<div class="card-header">`;
     ventanaPrint += `<i class="fas fa-table me-1"></i>`;
-    ventanaPrint += `Lista`;
+    ventanaPrint += `Lista de Tropas/Lote`;
     ventanaPrint += `</div>`;
-    ventanaPrint += `<table id="datat">`;
-    ventanaPrint += `<thead>`;
-    ventanaPrint += `<tr>`;
-    ventanaPrint += `<th class="id" >Nº Ord</th>`;
-    ventanaPrint += `<th class="id" >Tropa</th>`;
-    ventanaPrint += `<th class="sector">Lote</th>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `</thead>`;
-    ventanaPrint += `<tbody>`;
+    // ventanaPrint += `<table id="datat">`;
+    // ventanaPrint += `<thead>`;
+    // ventanaPrint += `<tr>`;
+    // ventanaPrint += `<th class="id" >Nº Ord</th>`;
+    // ventanaPrint += `<th class="id" >Tropa</th>`;
+    // ventanaPrint += `<th class="sector">Lote</th>`;
+    // ventanaPrint += `</tr>`;
+    // ventanaPrint += `</thead>`;
+    // ventanaPrint += `<tbody>`;
+    ventanaPrint += `<ol id="columnas">`;
+
 
     for (let i = 0; i < tropas.length; i++) {
-        ventanaPrint += `<tr >`;
-        ventanaPrint += `<td >0${i+1}</td>`;
-        ventanaPrint += `<td >${tropas[i].tropa}</td>`;
-        ventanaPrint += `<td >${tropas[i].lote}</td>`;
-        ventanaPrint += `</tr>`;
+        
+        ventanaPrint += `<li> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
+        
+        // ventanaPrint += `<tr >`;
+        // ventanaPrint += `<td >0${i+1}</td>`;
+        // ventanaPrint += `<td >${tropas[i].tropa}</td>`;
+        // ventanaPrint += `<td >${tropas[i].lote}</td>`;
+        // ventanaPrint += `</tr>`;
     }
+    ventanaPrint += `</ol>`;
 
-    ventanaPrint += `<tr >`;
+    // ventanaPrint += `<tr >`;
 
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `</tbody>`;
-    ventanaPrint += `</table>`;
+    // ventanaPrint += `</tr>`;
+    // ventanaPrint += `</tbody>`;
+    // ventanaPrint += `</table>`;
 
     ventanaPrint += `</div>`;
 
