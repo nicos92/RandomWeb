@@ -1,18 +1,26 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
-    const closure = (function(){
+    const Tropa = (function(){
 
-        let _sector;
-        let _id;
+        let _tropa;
     
-        function setTropa(sector){
-            _sector = sector;
+        function setTropa(tropa){
+            _tropa = tropa;
         }
     
         function getTropa(){
-            return _sector;
+            return _tropa;
         }
+
+
+    
+        return {setTropa, getTropa};
+    
+    })();
+    const Idx = (function(){
+
+        let _id;
 
         function setId(id){
             _id = id;
@@ -21,8 +29,19 @@ document.addEventListener('DOMContentLoaded', () =>{
         function getId(){
             return _id;
         }
+
+        function setLS_Id(){
+            localStorage.setItem("ls_Id", _id);
+        }
+
+        function getLS_Id(){
+            if( localStorage.getItem("ls_Id")){
+                _id = localStorage.getItem("ls_Id");
+            }
+            return _listas_Tropas;
+        }
     
-        return {setTropa, getTropa, setId, getId};
+        return {setId, getId, setLS_Id, getLS_Id};
     
     })();
 
@@ -67,16 +86,18 @@ document.addEventListener('DOMContentLoaded', () =>{
         
                 let idArray = e.target.id;
                 idArray = idArray.slice(-1);
-                closure.setId(idArray);
+                Idx.setId(idArray);
+                Idx.setLS_Id();
                 sortearTropa();
 
             });
+
             let btnEditar = document.getElementById("btnEditar" + i) ;
             btnEditar.addEventListener("click", (e) => {
 
                 let idArray = e.target.id;
                 idArray = idArray.slice(-1);
-                closure.setId(idArray);
+                Idx.setId(idArray);
                 layoutSidenav_content.innerHTML = ventanaEditarTropa();
             })
         }
@@ -85,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     function sortearTropa(){
 
         let listas_tropas = Lista_Tropas.getLSList_Tropas();
-
-        let lista = listas_tropas[closure.getId()];
+        console.log(Idx.getId());
+        let lista = listas_tropas[Idx.getId()];
         let contador = 0;
 
         const cantidad = lista.length;
@@ -111,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     tropaSorteada.style.fontWeight = "700";
                     tropaSorteada.style.backgroundColor = "#AFEEEE";
                     imprimir.disabled = false;
-                    closure.setTropa(tropaSorteada.innerText) ;
+                    Tropa.setTropa(tropaSorteada.innerText) ;
                 }
             }, 50)
     
@@ -174,7 +195,15 @@ function cards(){
 
                         // BOTON EDITAR
 
-                    card += `<button id="btnEditar${i}" type="button" class="btn btn-warning" data-bs-toggle="" data-bs-target="#"> Editar</button>`;
+
+                        card += `<a id="btnEditar${i}" href="editTropas.html" onclick="ventanaEditarTropa()" class="btn btn-warning btn-icon-split">`;
+                        card += `<span class="icon text-white-50">`;
+                        card += `<i class="fas fa-exclamation-triangle"></i>`;
+                        card += `</span>`;
+                        card += `<span class="text">Editar</span>`;
+                        card += `</a>`;
+
+                    // card += `<button id="btnEditar${i}" type="button" class="btn btn-warning" data-bs-toggle="" data-bs-target="#"> Editar</button>`;
 
                     card += `</div>`;
                 card += `</div>`;
@@ -194,7 +223,7 @@ function cardSinTropas(){
                     card += `<h6 id="titlleCard" class="m-0 font-weight-bold text-primary" >" No hay Listas de tropas "</h6>`;
                 card += `</div>`;
                 card += `<div id="bodyCard" class="card-body fs-5">`;
-                    card += " Para agregar tropas acceda al siguiente boton";
+                    card += ` Para agregar tropas acceda al siguiente boton`;
                 card += `</div>`;
                 card += `<div class="row " >`;
                     card += `<div class="col-lg6 d-flex justify-content-around">`;
@@ -215,7 +244,7 @@ function cardSinTropas(){
 function ventanaPrint(){
 
     let lista = Lista_Tropas.getLSList_Tropas();
-    let tropas = lista[closure.getId()];
+    let tropas = lista[Idx.getId()];
 
     let [dia, hoy, mes, anio] = definirFecha();
 
@@ -250,7 +279,7 @@ function ventanaPrint(){
     ventanaPrint += `<ol id="columnas">`;
 
     for (let i = 0; i < tropas.length; i++) {
-        if (closure.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
+        if (Tropa.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
             ventanaPrint += `<li class="text-white bg-dark rounded"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
         }else{
             ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
@@ -265,7 +294,7 @@ function ventanaPrint(){
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
     ventanaPrint += `<div class="modal-header">`;
-    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Tropa Sorteada: " ${closure.getTropa()} "</h3>`;
+    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Tropa Sorteada: " ${Tropa.getTropa()} "</h3>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
@@ -294,9 +323,7 @@ function ventanaPrint(){
 function ventanaEditarTropa(){
 
     let lista = Lista_Tropas.getLSList_Tropas();
-    console.log(lista);
-    let tropas = lista[closure.getId()];
-    console.log(tropas);
+    let tropas = lista[Idx.getId()];
 
     let ventanaEditTropa = ``;
     ventanaEditTropa += `<div class="container-fluid">`;
