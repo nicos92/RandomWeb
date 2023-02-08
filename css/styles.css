@@ -11832,6 +11832,8 @@ form{
 #columnas li {
   counter-increment: step-counter;
   margin-bottom: 5px;
+  
+  
 }
 #columnas li::before {
   content: counter(step-counter);
@@ -11841,5 +11843,5 @@ form{
   color: white;
   font-weight: bold;
   padding: 3px 8px;
-  border-radius: 11px;
+  border-radius: 4px;
 }

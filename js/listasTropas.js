@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 let nroAzar = Math.floor(Math.random() * cantidad) + 1;
     
                 
-                tropaSorteada.innerHTML = lista[ nroAzar -1].tropa + "-" + lista[ nroAzar -1].lote;
+                tropaSorteada.innerHTML = lista[ nroAzar -1].tropa + " - " + lista[ nroAzar -1].lote;
     
                 if( contador > 15){
                     clearInterval(seleccion);
@@ -139,9 +139,11 @@ function cards(){
                     card += `<h6 id="titlleCard" class="m-0 font-weight-bold text-primary" >Lista " ${i+1} "</h6>`;
                 card += `</div>`;
                 card += `<div id="bodyCard" class="card-body fs-5">`; 
+                
                 for( j=0 ; j <= listas_tropas[i].length - 1 ; j++){
-                    card += listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + " ; ";
+                    card += `${listas_tropas[i][j].tropa + "-" +listas_tropas[i][j].lote + " ; "}`;
                 }
+                
                 card += `</div>`;
                 card += `<div class="row " >`;
                     card += `<div class="col-lg6 d-flex justify-content-around">`;
@@ -197,7 +199,6 @@ function ventanaPrint(){
     let [dia, hoy, mes, anio] = definirFecha();
 
     let ventanaPrint = ``;
-
     ventanaPrint += `<div id="layoutSidenav">`;
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
@@ -222,37 +223,24 @@ function ventanaPrint(){
     ventanaPrint += `<div class="card mb-4 col-lg-4 p-2" >`;
     ventanaPrint += `<div class="card-header">`;
     ventanaPrint += `<i class="fas fa-table me-1"></i>`;
-    ventanaPrint += `Lista de Tropas/Lote`;
+    ventanaPrint += `Lista de " Tropa - Lote "`;
     ventanaPrint += `</div>`;
-    // ventanaPrint += `<table id="datat">`;
-    // ventanaPrint += `<thead>`;
-    // ventanaPrint += `<tr>`;
-    // ventanaPrint += `<th class="id" >Nº Ord</th>`;
-    // ventanaPrint += `<th class="id" >Tropa</th>`;
-    // ventanaPrint += `<th class="sector">Lote</th>`;
-    // ventanaPrint += `</tr>`;
-    // ventanaPrint += `</thead>`;
-    // ventanaPrint += `<tbody>`;
+
     ventanaPrint += `<ol id="columnas">`;
 
 
     for (let i = 0; i < tropas.length; i++) {
-        
-        ventanaPrint += `<li> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
-        
-        // ventanaPrint += `<tr >`;
-        // ventanaPrint += `<td >0${i+1}</td>`;
-        // ventanaPrint += `<td >${tropas[i].tropa}</td>`;
-        // ventanaPrint += `<td >${tropas[i].lote}</td>`;
-        // ventanaPrint += `</tr>`;
+
+        if (closure.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
+            
+            ventanaPrint += `<li class="text-white bg-dark rounded"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
+        }else{
+            ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
+
+        }
+
     }
     ventanaPrint += `</ol>`;
-
-    // ventanaPrint += `<tr >`;
-
-    // ventanaPrint += `</tr>`;
-    // ventanaPrint += `</tbody>`;
-    // ventanaPrint += `</table>`;
 
     ventanaPrint += `</div>`;
 
@@ -260,11 +248,12 @@ function ventanaPrint(){
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
     ventanaPrint += `<div class="modal-header">`;
-    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Tropa: " ${closure.getTropa()} "</h3>`;
+    ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Tropa Sorteada: " ${closure.getTropa()} "</h3>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
+
     ventanaPrint += `<div >`;
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
@@ -275,8 +264,7 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
 
-    ventanaPrint += `<div class="firmas">`;
-    ventanaPrint += `</div>`;
+    ventanaPrint += `<div class="firmas"></div>`;
     ventanaPrint += `<div class="firmas">`;
     ventanaPrint += `<div class="firma">Firma</div>`;
     ventanaPrint += `<div class="firma">Firma</div>`;
