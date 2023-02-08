@@ -58,18 +58,28 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function query(){
         let lista = Lista_Tropas.getLSList_Tropas();
-        for (let i= 0; i <= lista.length -1; i++) 
-        {
-            let tarjeta = document.getElementById(i);
-            tarjeta.addEventListener("click", sorteo)
-        }
-    }
 
-    function sorteo(e){
-        imprimir.disabled = true;
+        for (let i= 0; i < lista.length; i++) 
+        {
+            let tarjeta = document.getElementById("lista" + i);
+            tarjeta.addEventListener("click", (e) => {
+                imprimir.disabled = true;
         
-        closure.setId(e.target.id);
-        sortearTropa();
+                let idArray = e.target.id;
+                idArray = idArray.slice(-1);
+                closure.setId(idArray);
+                sortearTropa();
+
+            });
+            let btnEditar = document.getElementById("btnEditar" + i) ;
+            btnEditar.addEventListener("click", (e) => {
+
+                let idArray = e.target.id;
+                idArray = idArray.slice(-1);
+                closure.setId(idArray);
+                layoutSidenav_content.innerHTML = ventanaEditarTropa();
+            })
+        }
     }
 
     function sortearTropa(){
@@ -127,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     });
 
 
+
 function cards(){
 
     let listas_tropas = Lista_Tropas.getLSList_Tropas();
@@ -139,21 +150,31 @@ function cards(){
                     card += `<h6 id="titlleCard" class="m-0 font-weight-bold text-primary" >Lista " ${i+1} "</h6>`;
                 card += `</div>`;
                 card += `<div id="bodyCard" class="card-body fs-5">`; 
-                
+
+                card += `<div class="container">`; 
+                card += `<div class="row">`; 
+
                 for( j=0 ; j <= listas_tropas[i].length - 1 ; j++){
-                    card += `${listas_tropas[i][j].tropa + "-" +listas_tropas[i][j].lote + " ; "}`;
+                    // card += `${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + " ; "}`;
+                    // card += `<div class="col-lg-4">${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + " ; "}</div>`;
+                    card += `<div class="col-lg-6">`; 
+                    card += `${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote}`; 
+                    card += `</div>`; 
                 }
+                
+                card += `</div>`; 
+                card += `</div>`; 
                 
                 card += `</div>`;
                 card += `<div class="row " >`;
                     card += `<div class="col-lg6 d-flex justify-content-around">`;
 
-                    card += `<button id="${i}" type="button" class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" > Sortear</button>`;
+                    card += `<button id="lista${i}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" > Sortear</button>`;
 
 
                         // BOTON EDITAR
 
-                        card += `<button id="" type="button" class="btn btn-warning "  data-bs-toggle="modal" data-bs-target="#exampleModal" > Editar</button>`;
+                    card += `<button id="btnEditar${i}" type="button" class="btn btn-warning" data-bs-toggle="" data-bs-target="#"> Editar</button>`;
 
                     card += `</div>`;
                 card += `</div>`;
@@ -271,6 +292,77 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
 
     return ventanaPrint;
+}
+
+
+function ventanaEditarTropa(){
+
+    let lista = Lista_Tropas.getLSList_Tropas();
+    console.log(lista);
+    let tropas = lista[closure.getId()];
+    console.log(tropas);
+
+    let ventanaEditTropa = ``;
+    ventanaEditTropa += `<div class="container-fluid">`;
+
+        ventanaEditTropa += `<h1 class="mt-4">Editar Lista`;
+        
+        
+        
+        ventanaEditTropa += `<a href="listasTropas.html" class="btn btn-secondary btn-icon-split"`;
+        ventanaEditTropa += `<span class="icon text-white-50">`;
+            ventanaEditTropa += `<i class="fas fa-arrow-right"></i>`;
+        ventanaEditTropa += `</span>`;
+        ventanaEditTropa += `<span class="text"> Ver Listas</span>`;
+    ventanaEditTropa += `</a></h1>`;
+
+        ventanaEditTropa += `<div class="cuadro">`;
+            ventanaEditTropa += `<img src="css/senasaV3.png" alt="">`;  
+        ventanaEditTropa += `</div><hr>`;
+
+        ventanaEditTropa += `<div class="card shadow mb-4 col-lg-6">`;
+
+            ventanaEditTropa += `<div class="card-header py-3">`;
+            ventanaEditTropa += `<h5 class="m-0 font-weight-bold text-primary">Lista de Tropa - Lote</h5>`;
+            ventanaEditTropa += `</div>`;
+
+            ventanaEditTropa += `<div class="card-body col-lg-12">`;
+
+                ventanaEditTropa += `<div class="table-responsive">`;
+                    ventanaEditTropa += `<table id="listaTropas" class="table table-bordered" width="100%" cellspacing="0">`;
+                        ventanaEditTropa += `<thead>`;
+                            ventanaEditTropa += `<tr>`;
+                                ventanaEditTropa += `<th>ID</th>`;
+                                ventanaEditTropa += `<th>Tropa</th>`;
+                                ventanaEditTropa += `<th>Lote</th>`;
+                                ventanaEditTropa += `<th>Acciones</th>`;
+                            ventanaEditTropa += ` </tr>`;
+                        ventanaEditTropa += `</thead>`;
+                        ventanaEditTropa += `<tbody>`;
+
+                        for (let i = 0; i < tropas.length; i++) {
+
+                            let btnEliminar = `<a href="#" onclick="eliminarUsuario(${i})" class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> </a>`;
+
+                            ventanaEditTropa += `<tr ><td>${i}</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td>${btnEliminar}</td></tr>`;
+                    
+                            
+                    
+                        }
+
+                        
+
+
+                        ventanaEditTropa += `</tbody>`;
+                    ventanaEditTropa += `</table>`;
+                ventanaEditTropa += `</div>`;
+
+            ventanaEditTropa += `</div>`;
+        ventanaEditTropa += `</div>`;
+
+    ventanaEditTropa += `</div>`;
+
+    return ventanaEditTropa;
 }
 
 function definirFecha(){
