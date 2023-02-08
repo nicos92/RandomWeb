@@ -249,18 +249,14 @@ function ventanaPrint(){
 
     ventanaPrint += `<ol id="columnas">`;
 
-
     for (let i = 0; i < tropas.length; i++) {
-
         if (closure.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
-            
             ventanaPrint += `<li class="text-white bg-dark rounded"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
         }else{
             ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
-
         }
-
     }
+
     ventanaPrint += `</ol>`;
 
     ventanaPrint += `</div>`;
@@ -305,10 +301,7 @@ function ventanaEditarTropa(){
     let ventanaEditTropa = ``;
     ventanaEditTropa += `<div class="container-fluid">`;
 
-        ventanaEditTropa += `<h1 class="mt-4">Editar Lista`;
-        
-        
-        
+        ventanaEditTropa += `<h1 class="mt-4">Editar Lista `;
         ventanaEditTropa += `<a href="listasTropas.html" class="btn btn-secondary btn-icon-split"`;
         ventanaEditTropa += `<span class="icon text-white-50">`;
             ventanaEditTropa += `<i class="fas fa-arrow-right"></i>`;
@@ -341,17 +334,9 @@ function ventanaEditarTropa(){
                         ventanaEditTropa += `<tbody>`;
 
                         for (let i = 0; i < tropas.length; i++) {
-
-                            let btnEliminar = `<a href="#" onclick="eliminarUsuario(${i})" class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> </a>`;
-
+                            let btnEliminar = `<a id="${i}"href="#" class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> </a>`;
                             ventanaEditTropa += `<tr ><td>${i}</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td>${btnEliminar}</td></tr>`;
-                    
-                            
-                    
                         }
-
-                        
-
 
                         ventanaEditTropa += `</tbody>`;
                     ventanaEditTropa += `</table>`;
@@ -368,7 +353,7 @@ function ventanaEditarTropa(){
 function definirFecha(){
 
     const fecha = new Date();
-    let anio = fecha.getFullYear(); // AÑo 2023
+    let anio = fecha.getFullYear(); // Año 2023
     let mes = fecha.getMonth() + 1; // mes del 0 al 11
     let hoy = fecha.getDate(); // fecha del 1 al 31
     let dia = fecha.getDay(); // dia lunes, martes ...
