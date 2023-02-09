@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () =>{
 
 
+
     const Tropa = (function(){
 
         let _tropa;
@@ -14,11 +15,10 @@ document.addEventListener('DOMContentLoaded', () =>{
             return _tropa;
         }
 
-
-    
         return {setTropa, getTropa};
     
     })();
+
     const Idx = (function(){
 
         let _id;
@@ -32,30 +32,25 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
 
         function setLS_Id(){
-            _id = JSON.stringify(_id);
             localStorage.setItem("ls_Id", _id);
         }
 
         function getLS_Id(){
             if( localStorage.getItem("ls_Id")){
                 _id = localStorage.getItem("ls_Id");
-                _id = JSON.parse(_id);
             }
-            return _listas_Tropas;
+            return _id;
         }
     
         return {setId, getId, setLS_Id, getLS_Id};
     
     })();
 
-    
     const Lista_Tropas = (function(){
         let _listas_Tropas = [];
         
-        
         function set_List_Tropas(lista_tropa){
             _listas_Tropas = [ ..._listas_Tropas, lista_tropa];
-            
         }
         
         function get_List_Tropas(){
@@ -99,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 let nroAzar = Math.floor(Math.random() * cantidad) + 1;
     
                 
-                tropaSorteada.innerHTML = lista[ nroAzar -1].tropa + " - " + lista[ nroAzar -1].lote;
+                tropaSorteada.innerHTML = lista[nroAzar -1].tropa + " - " + lista[nroAzar -1].lote;
     
                 if( contador > 15){
                     clearInterval(seleccion);
@@ -110,10 +105,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     Tropa.setTropa(tropaSorteada.innerText) ;
                 }
             }, 50)
-    
         }, 1000)
-
-
     }
 
 
@@ -197,12 +189,13 @@ function ventanaPrint(){
     return ventanaPrint;
 }
 
-
 function ventanaEditarTropa(){
+
+    document.querySelector('#listaTropas tbody').innerHTML = "";
 
     let lista = Lista_Tropas.getLSList_Tropas();
     console.log(lista);
-    let tropas = lista[Idx.getId()];
+    let tropas = lista[Idx.getLS_Id()];
     console.log(tropas);
 
     let ventanaEditTropa = ``;
@@ -212,9 +205,10 @@ function ventanaEditarTropa(){
         ventanaEditTropa += `<tr ><td>${i}</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td>${btnEliminar}</td></tr>`;
     }
 
-
-    return ventanaEditTropa;
+    document.querySelector('#listaTropas tbody').innerHTML = ventanaEditTropa;
 }
+
+
 
 function definirFecha(){
 
@@ -244,6 +238,24 @@ function definirFecha(){
     return [dia, hoy, mes, anio];
 
 }
+
+
+    ventanaEditarTropa();
+
+    sorteo.addEventListener("click", () => {
+
+        sortearTropa();
+    })
+
+    imprimir.addEventListener("click", () => {
+
+        document.getElementById("body").innerHTML = ventanaPrint();
+
+        window.print();
+
+        location.reload();
+
+    });
 
 
 });

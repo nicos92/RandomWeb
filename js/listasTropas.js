@@ -96,17 +96,17 @@ document.addEventListener('DOMContentLoaded', () =>{
             btnEditar.addEventListener("click", (e) => {
 
                 let idArray = e.target.id;
-                idArray = idArray.slice(-1);
+                idArray = idArray.slice(-1) ;
                 Idx.setId(idArray);
-                layoutSidenav_content.innerHTML = ventanaEditarTropa();
-            })
+                Idx.setLS_Id();
+                location.href = "editTropas.html"
+            });
         }
     }
 
     function sortearTropa(){
 
         let listas_tropas = Lista_Tropas.getLSList_Tropas();
-        console.log(Idx.getId());
         let lista = listas_tropas[Idx.getId()];
         let contador = 0;
 
@@ -122,8 +122,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 
                 contador +=1;
                 let nroAzar = Math.floor(Math.random() * cantidad) + 1;
-    
-                
                 tropaSorteada.innerHTML = lista[ nroAzar -1].tropa + " - " + lista[ nroAzar -1].lote;
     
                 if( contador > 15){
@@ -176,8 +174,6 @@ function cards(){
                 card += `<div class="row">`; 
 
                 for( j=0 ; j <= listas_tropas[i].length - 1 ; j++){
-                    // card += `${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + " ; "}`;
-                    // card += `<div class="col-lg-4">${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote + " ; "}</div>`;
                     card += `<div class="col-lg-6">`; 
                     card += `${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote}`; 
                     card += `</div>`; 
@@ -192,18 +188,7 @@ function cards(){
 
                     card += `<button id="lista${i}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" > Sortear</button>`;
 
-
-                        // BOTON EDITAR
-
-
-                        card += `<a id="btnEditar${i}" href="editTropas.html" onclick="ventanaEditarTropa()" class="btn btn-warning btn-icon-split">`;
-                        card += `<span class="icon text-white-50">`;
-                        card += `<i class="fas fa-exclamation-triangle"></i>`;
-                        card += `</span>`;
-                        card += `<span class="text">Editar</span>`;
-                        card += `</a>`;
-
-                    // card += `<button id="btnEditar${i}" type="button" class="btn btn-warning" data-bs-toggle="" data-bs-target="#"> Editar</button>`;
+                    card += `<button id="btnEditar${i}" type="button" class="btn btn-warning" data-bs-toggle="" data-bs-target="#"> Editar</button>`;
 
                     card += `</div>`;
                 card += `</div>`;
