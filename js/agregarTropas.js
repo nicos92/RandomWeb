@@ -103,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () =>{
             lote: _numLote
         }
 
-        // contadorId.sum_Id();
         Tropa.set_Tropa(_Tropa);
         Tropas.set_Tropas(_Tropa);
-        datatablesSimple.innerHTML += ventanaAgregarLista();
+        // document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
+        document.querySelector('#datatablesSimple tbody').innerHTML += `<tr><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
         numTropa.focus();
         
     });
@@ -118,14 +118,5 @@ document.addEventListener('DOMContentLoaded', () =>{
         Lista_Tropas.setLSList_Tropas();
         location.reload();
     });
-
-    function ventanaAgregarLista(){
-
-        let ventanaAgregarLista = "";
-        ventanaAgregarLista = `<tr><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
-
-        return ventanaAgregarLista;
-
-    };
 
 });

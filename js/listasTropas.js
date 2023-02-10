@@ -163,7 +163,7 @@ function cards(){
     let card = ``;
 
     for( let i=0 ; i <= listas_tropas.length - 1 ; i++){
-        card += `<div class="col-lg-4">`;
+        card += `<div class="col-lg-4 h-25">`;
             card += `<div class="card shadow mb-4">`;
                 card += `<div class="card-header py-3">`;
                     card += `<h6 id="titlleCard" class="m-0 font-weight-bold text-primary" >Lista " ${i+1} "</h6>`;

@@ -191,7 +191,7 @@ function ventanaPrint(){
 
 function ventanaEditarTropa(){
 
-    document.querySelector('#listaTropas tbody').innerHTML = "";
+    document.querySelector('#datatablesSimple tbody').innerHTML = "";
 
     let lista = Lista_Tropas.getLSList_Tropas();
     console.log(lista);
@@ -205,7 +205,7 @@ function ventanaEditarTropa(){
         ventanaEditTropa += `<tr ><td>${i}</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td>${btnEliminar}</td></tr>`;
     }
 
-    document.querySelector('#listaTropas tbody').innerHTML = ventanaEditTropa;
+    document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
 }
 
 
