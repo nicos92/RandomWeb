@@ -106,7 +106,64 @@ document.addEventListener('DOMContentLoaded', () =>{
                 }
             }, 50)
         }, 1000)
+    };
+
+
+    function query(){
+        
+        let lista = Lista_Tropas.getLSList_Tropas();
+        let tropas = lista[Idx.getLS_Id()];
+
+        for (let i= 0; i < tropas.length; i++) 
+        {
+
+            let idxArray = document.getElementById("delete"+i);
+            idxArray.addEventListener("click", (e) => {
+        
+                let idArray = e.target.id;
+                console.log(idArray);
+                // if (idArray.length > 7) {
+
+                //     console.log("delete" + i);
+
+                //     idArray = Number(idArray.slice(-2));
+                //     console.log(idArray);
+                //     // Idx.setId(idArray);
+                //     // Idx.setLS_Id();
+                //     // sortearTropa();
+                //     // deleteTropa(idArray);
+                    
+                // }else{
+
+                //     console.log("delete" + i);
+
+                //     idArray = Number(idArray.slice(-1));
+                //     console.log(idArray);
+                //     // Idx.setId(idArray);
+                //     // Idx.setLS_Id();
+                //     // sortearTropa();
+                //     // deleteTropa(idArray);
+                // }
+
+            });
+        }
     }
+
+    function deleteTropa(idx) {
+
+        let lista = Lista_Tropas.getLSList_Tropas();
+        let tropas = lista[Idx.getLS_Id()];
+        console.log(tropas);
+    
+        tropas.splice(idx, 1);
+        console.log(tropas);
+    
+        console.log(lista);
+    
+        Lista_Tropas.setLSList_Tropas();
+        location.reload();
+    
+    };
 
 
 
@@ -187,26 +244,25 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
 
     return ventanaPrint;
-}
+};
 
 function ventanaEditarTropa(){
 
     document.querySelector('#datatablesSimple tbody').innerHTML = "";
 
     let lista = Lista_Tropas.getLSList_Tropas();
-    console.log(lista);
     let tropas = lista[Idx.getLS_Id()];
     console.log(tropas);
 
     let ventanaEditTropa = ``;
 
     for (let i = 0; i < tropas.length; i++) {
-        let btnEliminar = `<a id="${i}"href="#" class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> </a>`;
+        let btnEliminar = `<button id="delete${i}" type="button" class="btn btn-danger">Eliminar</button>`;
         ventanaEditTropa += `<tr ><td>${i}</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td>${btnEliminar}</td></tr>`;
     }
 
     document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
-}
+};
 
 
 
@@ -234,11 +290,14 @@ function definirFecha(){
     mes = getMes(mes);
 
     return [dia, hoy, mes, anio];
-}
+};
+
+
 
 
     imprimir.disabled = true;
     ventanaEditarTropa();
+    query();
 
     sorteo.addEventListener("click", () => {
         imprimir.disabled = true;
@@ -254,3 +313,6 @@ function definirFecha(){
 
 
 });
+
+
+
