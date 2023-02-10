@@ -150,7 +150,7 @@ function ventanaPrint(){
 
     for (let i = 0; i < tropas.length; i++) {
         if (Tropa.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
-            ventanaPrint += `<li class="text-white bg-dark rounded"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
+            ventanaPrint += `<li class="text-white bg-dark rounded fw-bold"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
         }else{
             ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
         }
@@ -225,34 +225,29 @@ function definirFecha(){
         const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
         return dias[ dia];
     }
-
     dia = getDia(dia);
 
     function getMes(mes){
         const meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
         return meses[ mes - 1];
     }
-
     mes = getMes(mes);
 
     return [dia, hoy, mes, anio];
-
 }
 
 
+    imprimir.disabled = true;
     ventanaEditarTropa();
 
     sorteo.addEventListener("click", () => {
-
+        imprimir.disabled = true;
         sortearTropa();
-    })
+    });
 
     imprimir.addEventListener("click", () => {
-
         document.getElementById("body").innerHTML = ventanaPrint();
-
         window.print();
-
         location.reload();
 
     });

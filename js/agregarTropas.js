@@ -113,10 +113,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     
     btnGuardarLista.addEventListener("click", () => {
         
-        Lista_Tropas.getLSList_Tropas();
-        Lista_Tropas.set_List_Tropas(Tropas.get_Tropas());
-        Lista_Tropas.setLSList_Tropas();
-        location.reload();
+        if (Tropas.get_Tropas().length != 0) {
+            Lista_Tropas.getLSList_Tropas();
+            Lista_Tropas.set_List_Tropas(Tropas.get_Tropas());
+            Lista_Tropas.setLSList_Tropas();
+            location.reload();
+            return;
+        }
+        alert("No hay tropas por guardar")
     });
 
 });

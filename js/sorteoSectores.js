@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const closure = (function(){
 
+    const _sectores = ['Playa de faena',  "Cuarteo", "Despostada", "Menudencias", "Triperia", "Exteriores - Corrales", "Playa de Emergencias", "Melter", "Lavadero de Roldanas", "Nonatos", "Saladero"];
+
     let _sector;
 
     function setSector(sector){
@@ -13,32 +15,34 @@ const closure = (function(){
         return _sector;
     }
 
-    return {setSector, getSector};
+    function getSectores(){
+        return _sectores
+    }
+
+    return {setSector, getSector, getSectores};
 
 })();
 
-
     sorteo.addEventListener("click", () => {
         iniSorteo();
-
     })
 
-
     imprimir.addEventListener("click", () => {
-
-        // var sector = sectorSorteado.innerText;
-        // console.log(sector);
         document.getElementById("body").innerHTML = ventanaPrint();
-        // window.location.href = "./print.html";
-
+        ventanaEditarSectores();
         window.print();
-
         location.reload();
-
     });
 
+function ventanaEditarSectores(){
 
-
+    let sectores = closure.getSectores();
+    let ventanaEditSectores = ``;
+    for (let i = 0; i < sectores.length; i++) {
+        ventanaEditSectores += `<tr ><td>${i+1}</td><td>${sectores[i]}</td></tr>`;
+    }
+    document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditSectores;
+}
 
 function iniSorteo(){
 
@@ -53,14 +57,12 @@ function iniSorteo(){
 
         const seleccion = setInterval(() => {
 
-            const sectores = ['01 - Playa de faena',  "02 - Cuarteo", "03 - Despostada", "04 - Menudencias", "05 - Triperia", "06 - Exteriores - Corrales", "07 - Playa de Emergencias", "08 - Melter", "09 - Lavadero de Roldanas", "10 - Nonatos", "11 - Saladero"];
+            let sectores = closure.getSectores();
 
             contador +=1;
             const cantidad = sectores.length;
             let nroAzar = Math.floor(Math.random() * cantidad) + 1;
-
-            
-            sectorSorteado.innerHTML = sectores[ nroAzar -1];
+            sectorSorteado.innerHTML = ` ${ nroAzar + " - " + sectores[ nroAzar -1]}`;
 
             if( contador > 15){
                 clearInterval(seleccion);
@@ -69,7 +71,6 @@ function iniSorteo(){
                 sectorSorteado.style.backgroundColor = "#AFEEEE";
                 imprimir.disabled = false;
                 closure.setSector(sectorSorteado.innerText) ;
-
             }
         }, 50)
 
@@ -104,7 +105,7 @@ function ventanaPrint(){
     ventanaPrint += `<i class="fas fa-table me-1"></i>`;
     ventanaPrint += `Lista`;
     ventanaPrint += `</div>`;
-    ventanaPrint += `<table id="">`;
+    ventanaPrint += `<table id="datatablesSimple">`;
     ventanaPrint += `<thead>`;
     ventanaPrint += `<tr>`;
     ventanaPrint += `<th class="id" >N° Ord</th>`;
@@ -112,50 +113,7 @@ function ventanaPrint(){
     ventanaPrint += `</tr>`;
     ventanaPrint += `</thead>`;
     ventanaPrint += `<tbody>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >01</td>`;
-    ventanaPrint += `<td>Playa de faena</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >02</td>`;
-    ventanaPrint += `<td >Cuarteo</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >03</td>`;
-    ventanaPrint += `<td >Despostada</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >04</td>`;
-    ventanaPrint += `<td >Menudencias</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >05</td>`;
-    ventanaPrint += `<td >Triperia</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr>`;
-    ventanaPrint += `<td >06</td>`;
-    ventanaPrint += `<td>Exteriores - Corrales</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >07</td>`;
-    ventanaPrint += `<td >Playa Emergencias</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >08</td>`;
-    ventanaPrint += `<td >Melter</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >09</td>`;
-    ventanaPrint += `<td >Lavadero de Roldanas</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >10</td>`;
-    ventanaPrint += `<td >Nonatos</td>`;
-    ventanaPrint += `</tr>`;
-    ventanaPrint += `<tr >`;
-    ventanaPrint += `<td >11</td>`;
-    ventanaPrint += `<td >Saladero</td>`;
-    ventanaPrint += `</tr>`;
+
     ventanaPrint += `</tbody>`;
     ventanaPrint += `</table>`;
 
@@ -196,19 +154,17 @@ function definirFecha(){
         const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
         return dias[ dia];
     }
-
     dia = getDia(dia);
 
     function getMes(mes){
         const meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
         return meses[ mes - 1];
     }
-
     mes = getMes(mes);
 
     return [dia, hoy, mes, anio];
-
 }
 
+    ventanaEditarSectores();
 
 });
