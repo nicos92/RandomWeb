@@ -113,11 +113,14 @@ document.addEventListener('DOMContentLoaded', () =>{
         
         let lista = Lista_Tropas.getLSList_Tropas();
         let tropas = lista[Idx.getLS_Id()];
+        console.log(tropas);
+
+        console.log(tropas.length);
 
         for (let i= 0; i < tropas.length; i++) 
         {
-
-            let idxArray = document.getElementById("delete"+i);
+            
+            let idxArray = document.getElementById(i);
             idxArray.addEventListener("click", (e) => {
         
                 let idArray = e.target.id;
@@ -126,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
                 //     console.log("delete" + i);
 
-                //     idArray = Number(idArray.slice(-2));
+                //     idArray = Number(idArray.slice(-2)); 
                 //     console.log(idArray);
                 //     // Idx.setId(idArray);
                 //     // Idx.setLS_Id();
@@ -149,21 +152,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
-    function deleteTropa(idx) {
 
-        let lista = Lista_Tropas.getLSList_Tropas();
-        let tropas = lista[Idx.getLS_Id()];
-        console.log(tropas);
-    
-        tropas.splice(idx, 1);
-        console.log(tropas);
-    
-        console.log(lista);
-    
-        Lista_Tropas.setLSList_Tropas();
-        location.reload();
-    
-    };
 
 
 
@@ -246,23 +235,7 @@ function ventanaPrint(){
     return ventanaPrint;
 };
 
-function ventanaEditarTropa(){
 
-    document.querySelector('#datatablesSimple tbody').innerHTML = "";
-
-    let lista = Lista_Tropas.getLSList_Tropas();
-    let tropas = lista[Idx.getLS_Id()];
-    console.log(tropas);
-
-    let ventanaEditTropa = ``;
-
-    for (let i = 0; i < tropas.length; i++) {
-        let btnEliminar = `<button id="delete${i}" type="button" class="btn btn-danger">Eliminar</button>`;
-        ventanaEditTropa += `<tr ><td>${i}</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td>${btnEliminar}</td></tr>`;
-    }
-
-    document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
-};
 
 
 
@@ -297,7 +270,9 @@ function definirFecha(){
 
     imprimir.disabled = true;
     ventanaEditarTropa();
-    query();
+
+        // query();
+
 
     sorteo.addEventListener("click", () => {
         imprimir.disabled = true;
@@ -313,6 +288,81 @@ function definirFecha(){
 
 
 });
+
+function cargarListaLS(){
+
+    let _listas_Tropas;
+    if( localStorage.getItem("ls_List_tropas")){
+        _listas_Tropas = localStorage.getItem("ls_List_tropas");
+        _listas_Tropas = JSON.parse(_listas_Tropas);
+    }
+
+    return _listas_Tropas;
+}
+
+function cargarIdLS(){
+
+    let _id;
+
+    if( localStorage.getItem("ls_Id")){
+        _id = localStorage.getItem("ls_Id");
+    }
+
+    return _id;
+}
+
+function ventanaEditarTropa(){
+
+    document.querySelector('#datatablesSimple tbody').innerHTML = "";
+
+    let lista = cargarListaLS();
+    let tropas = lista[cargarIdLS()];
+    console.log(tropas);
+    console.log(tropas.length);
+
+
+    let ventanaEditTropa = ``;
+    
+
+    for (let i = 0; i < tropas.length; i++) {
+        
+        ventanaEditTropa += `<tr ><td>${i + 1 }</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger">Eliminar</button></td></tr>`;
+    }
+
+    document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
+};
+
+function deleteTropa(idx) {
+
+    let lista = cargarListaLS();
+    console.log(lista);
+    let tropas = lista[cargarIdLS()];
+    console.log(tropas);
+    console.log(idx);
+
+    tropas.splice(idx, 1);
+
+    console.log(tropas);
+    console.log(lista);
+
+
+
+    // Lista_Tropas.set_List_Tropas(Tropas.get_Tropas());
+    // Lista_Tropas.setLSList_Tropas();
+
+
+
+        lista = JSON.stringify(lista);
+        localStorage.setItem("ls_List_tropas", lista);
+
+
+
+    // Lista_Tropas.setLSList_Tropas();
+    // location.reload();
+    location.reload();
+
+};
+
 
 
 
