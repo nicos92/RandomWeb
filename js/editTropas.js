@@ -212,6 +212,7 @@ function definirFecha(){
     return [dia, hoy, mes, anio];
 };
 
+    numList.innerText = `Lista "${Number(Idx.getLS_Id()) + 1}"`;
     imprimir.disabled = true;
     ventanaEditarTropa();
 
@@ -224,6 +225,11 @@ function definirFecha(){
         document.getElementById("body").innerHTML = ventanaPrint();
         window.print();
         location.reload();
+
+    });
+
+    btnElimList.addEventListener("click", () => {
+        deleteLista();
 
     });
 
@@ -242,34 +248,23 @@ function cargarListaLS(){
 }
 
 function cargarIdLS(){
-
     let _id;
-
-    if( localStorage.getItem("ls_Id")){
-        _id = localStorage.getItem("ls_Id");
-    }
-
+    _id = localStorage.getItem("ls_Id");
     return _id;
 }
 
-function ventanaEditarTropa(){
 
-    document.querySelector('#datatablesSimple tbody').innerHTML = "";
+
+function ventanaEditarTropa(){
 
     let lista = cargarListaLS();
     let tropas = lista[cargarIdLS()];
-    console.log(tropas);
-    console.log(tropas.length);
 
 
     let ventanaEditTropa = ``;
-    
-
     for (let i = 0; i < tropas.length; i++) {
-        
         ventanaEditTropa += `<tr ><td>${i + 1 }</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger">Eliminar</button></td></tr>`;
     }
-
     document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
 };
 
@@ -283,20 +278,27 @@ function deleteTropa(idx) {
     lista = JSON.stringify(lista);
     localStorage.setItem("ls_List_tropas", lista);
 
+    if (tropas.length == 0) {
+        console.log(tropas.length);
+        deleteLista();
+        return;
+    }
+    
+
     location.reload();
 
 };
 
-function deleteLista(idx){
+function deleteLista(){
 
     let lista = cargarListaLS();
 
-    lista.splice(idx, 1);
+    lista.splice(cargarIdLS(), 1);
 
     lista = JSON.stringify(lista);
     localStorage.setItem("ls_List_tropas", lista);
 
-    location.href = "listasTropas.html"
+    location.href = "listasTropas.html";
 }
 
 
