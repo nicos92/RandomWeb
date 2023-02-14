@@ -263,12 +263,16 @@ function ventanaEditarTropa(){
 
     let ventanaEditTropa = ``;
     for (let i = 0; i < tropas.length; i++) {
-        ventanaEditTropa += `<tr ><td>${i + 1 }</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger">Eliminar</button></td></tr>`;
+        ventanaEditTropa += `<tr ><td>${i + 1 }</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
     }
     document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
 };
 
 function deleteTropa(idx) {
+
+    if (!confirm('¿Seguro desea eliminar esta Tropa?')){
+        return;
+    }
 
     let lista = cargarListaLS();
     let tropas = lista[cargarIdLS()];
@@ -290,6 +294,10 @@ function deleteTropa(idx) {
 };
 
 function deleteLista(){
+
+    if (!confirm('¿Seguro desea eliminar esta Lista?')){
+        return;
+    }
 
     let lista = cargarListaLS();
 
