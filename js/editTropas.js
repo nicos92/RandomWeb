@@ -229,7 +229,10 @@ function definirFecha(){
     });
 
     btnElimList.addEventListener("click", () => {
-        deleteLista();
+        if (confirm('¿Seguro desea eliminar esta Lista?')){
+            deleteLista();
+            return;
+        }
 
     });
 
@@ -253,8 +256,6 @@ function cargarIdLS(){
     return _id;
 }
 
-
-
 function ventanaEditarTropa(){
 
     let lista = cargarListaLS();
@@ -263,7 +264,8 @@ function ventanaEditarTropa(){
 
     let ventanaEditTropa = ``;
     for (let i = 0; i < tropas.length; i++) {
-        ventanaEditTropa += `<tr ><td>${i + 1 }</td><td>${tropas[i].tropa} </td> <td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
+        element = tropas[i];
+        ventanaEditTropa += `<tr ><td>${i + 1 }</td><td>${element.tropa} </td> <td>${element.lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
     }
     document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
 };
@@ -287,25 +289,16 @@ function deleteTropa(idx) {
         deleteLista();
         return;
     }
-    
-
     location.reload();
 
 };
 
 function deleteLista(){
 
-    if (!confirm('¿Seguro desea eliminar esta Lista?')){
-        return;
-    }
-
     let lista = cargarListaLS();
-
     lista.splice(cargarIdLS(), 1);
-
     lista = JSON.stringify(lista);
     localStorage.setItem("ls_List_tropas", lista);
-
     location.href = "listasTropas.html";
 }
 

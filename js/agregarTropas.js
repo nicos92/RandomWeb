@@ -52,7 +52,22 @@ document.addEventListener('DOMContentLoaded', () =>{
         function get_Tropas(){
             return _tropas;
         }
-        return {set_Tropas, get_Tropas};
+
+        function setLS_Tropas(){
+            _tropas = JSON.stringify(_tropas);
+            localStorage.setItem("ls_tropas", _tropas);
+        }
+
+        function getLS_Tropas(){
+            if( localStorage.getItem("ls_tropas")){
+                _tropas = localStorage.getItem("ls_tropas");
+                _tropas = JSON.parse(_tropas);
+            }
+            return _tropas;
+        }
+
+        
+        return {set_Tropas, get_Tropas, setLS_Tropas, getLS_Tropas};
     })();
 
     const Tropa = (function(){
@@ -71,33 +86,32 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     })();
 
-    // const contadorId = (function(){
-
-    //     let _id = 0;
-
-    //     function sum_Id(){
-    //         _id++;
-    //     }
-    //     function get_Id(){
-    //         return _id;
-    //     }
-    //     function set_LS_Id(){
-    //         let _id = JSON.stringify(_id);
-    //         localStorage.setItem("ls_Id", _id);
-    //     }
-    //     function getLS_Id(){
-    //         let datos = localStorage.getItem("ls_Id");
-    //         _id = JSON.parse(datos);
-    //     }
-    //     return {sum_Id, get_Id,set_LS_Id,getLS_Id};
-
-    // })();
-
+    if (localStorage.getItem("ls_tropas")) {
+        Tropas.getLS_Tropas();
+    }
+    tablaTropas();
     agregarTropa.addEventListener("click", () => {
+        
+        agregarTropas();
+        tablaTropas();
+        
+    });
+    
+    btnGuardarLista.addEventListener("click", () => {
+        
+        guardarLista();
+
+    });
+
+    function agregarTropas(){
 
         let _numLote = numLote.value;
         if( _numLote== "") _numLote = "01";
 
+        if (numTropa.value == '') {
+            alert("No hay tropa que agregar");
+            return;
+        }
         let _Tropa = {
             tropa: numTropa.value,
             lote: _numLote
@@ -105,22 +119,50 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         Tropa.set_Tropa(_Tropa);
         Tropas.set_Tropas(_Tropa);
-        // document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
-        document.querySelector('#datatablesSimple tbody').innerHTML += `<tr><td>${Tropa.get_Tropa().tropa}</td><td>${Tropa.get_Tropa().lote}</td></tr>`;
-        numTropa.focus();
-        
-    });
-    
-    btnGuardarLista.addEventListener("click", () => {
-        
+        Tropas.setLS_Tropas();
+        location.reload();
+    }
+
+
+    function guardarLista(){
+
         if (Tropas.get_Tropas().length != 0) {
             Lista_Tropas.getLSList_Tropas();
             Lista_Tropas.set_List_Tropas(Tropas.get_Tropas());
             Lista_Tropas.setLSList_Tropas();
             location.reload();
+            localStorage.removeItem("ls_tropas");
             return;
         }
-        alert("No hay tropas por guardar")
-    });
+        alert("No hay tropas por guardar");
+    }
 
 });
+
+
+function cargarLSTropas(){
+    
+    let _Tropas;
+    if( localStorage.getItem("ls_tropas")){
+        _Tropas = localStorage.getItem("ls_tropas");
+        _Tropas = JSON.parse(_Tropas);
+        return _Tropas;
+    }
+    return;
+}
+
+function tablaTropas(){
+    numTropa.focus();
+
+    const tropas = cargarLSTropas();
+    let tablaTropa = ``;
+    
+    if (tropas) {
+        
+        for (let i = 0; i < tropas.length; i++) {
+            tablaTropa += `<tr><td>${tropas[i].tropa}</td><td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
+        }
+        
+    }
+    document.querySelector('#datatablesSimple tbody').innerHTML = tablaTropa;
+};
