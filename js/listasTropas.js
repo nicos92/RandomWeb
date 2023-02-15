@@ -163,26 +163,33 @@ document.addEventListener('DOMContentLoaded', () =>{
         let card = ``;
 
         for( let i=0 ; i <= listas_tropas.length - 1 ; i++){
-            card += `<div class="col-lg-4 h-25">`;
+            card += `<div class="col-lg-12 h-25">`;
                 card += `<div class="card shadow mb-4">`;
                     card += `<div class="card-header py-3">`;
                         card += `<h6 id="titlleCard" class="m-0 font-weight-bold text-primary" >Lista " ${i+1} "</h6>`;
                     card += `</div>`;
-                    card += `<div id="bodyCard" class="card-body fs-5">`; 
+                    // card += `<div id="bodyCard" class="card-body fs-5">`; 
 
-                    card += `<div class="container">`; 
-                    card += `<div class="row">`; 
+                        // card += `<div class="container">`; 
+                            // card += `<div class="row">`; 
+                            card += `<ol id="columnas">`;
 
-                    for( j=0 ; j <= listas_tropas[i].length - 1 ; j++){
-                        card += `<div class="col-lg-6">`; 
-                        card += `${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote}`; 
-                        card += `</div>`; 
-                    }
+
+                                for( j=0 ; j <= listas_tropas[i].length - 1 ; j++){
+                                    card += `<li>`; 
+                                    card += `${listas_tropas[i][j].tropa + "-" + listas_tropas[i][j].lote}`; 
+                                    card += `</li>`; 
+                                }
+
+                            card += `</ol>`;
+                            
+                    card += `<div class="my-2"></div>`;
+
+                            
+                            // card += `</div>`; 
+                        // card += `</div>`; 
                     
-                    card += `</div>`; 
-                    card += `</div>`; 
-                    
-                    card += `</div>`;
+                    // card += `</div>`;
                     card += `<div class="row " >`;
                         card += `<div class="col-lg6 d-flex justify-content-around">`;
 
@@ -192,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
                         card += `</div>`;
                     card += `</div>`;
-                    card += `<div class="my-2"></div>`;
+                    card += `<div class="my-1"></div>`;
                 card += `</div>`;
             card += `</div>`;
         }
