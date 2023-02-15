@@ -128,10 +128,27 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         if (Tropas.get_Tropas().length != 0) {
             Lista_Tropas.getLSList_Tropas();
-            Lista_Tropas.set_List_Tropas(Tropas.get_Tropas());
+
+            let lista = Tropas.get_Tropas();
+            console.log(lista);
+
+            let hash = {};
+            lista = lista.filter(function(item) 
+            {
+                let go = item.tropa !== undefined ? item.lote + item.tropa : item.lote;
+
+                let exists = !hash[go] || false;
+
+                hash[go] = true;
+                return exists;
+            });
+            
+
+
+            Lista_Tropas.set_List_Tropas(lista);
             Lista_Tropas.setLSList_Tropas();
-            location.reload();
             localStorage.removeItem("ls_tropas");
+            location.reload();
             return;
         }
         alert("No hay tropas por guardar");
@@ -160,7 +177,7 @@ function tablaTropas(){
     if (tropas) {
         
         for (let i = 0; i < tropas.length; i++) {
-            tablaTropa += `<tr><td>${tropas[i].tropa}</td><td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
+            tablaTropa += `<tr><td>${i+1}</td><td>${tropas[i].tropa}</td><td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
         }
         
     }
