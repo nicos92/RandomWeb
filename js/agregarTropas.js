@@ -133,12 +133,9 @@ document.addEventListener('DOMContentLoaded', () =>{
             console.log(lista);
 
             let hash = {};
-            lista = lista.filter(function(item) 
-            {
-                let go = item.tropa !== undefined ? item.lote + item.tropa : item.lote;
-
+            lista = lista.filter(function(item) {
+                let go = item.tropa !== undefined ? item.tropa + item.lote : item.tropa;
                 let exists = !hash[go] || false;
-
                 hash[go] = true;
                 return exists;
             });
