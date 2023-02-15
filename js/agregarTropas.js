@@ -166,3 +166,19 @@ function tablaTropas(){
     }
     document.querySelector('#datatablesSimple tbody').innerHTML = tablaTropa;
 };
+
+function deleteTropa(idx) {
+
+    if (!confirm('¿Seguro desea eliminar esta Tropa?')){
+        return;
+    }
+    let tropas = cargarLSTropas();
+
+    tropas.splice(idx, 1);
+
+    tropas = JSON.stringify(tropas);
+    localStorage.setItem("ls_tropas", tropas);
+
+    location.reload();
+
+};
