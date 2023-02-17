@@ -1,7 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
-
     const numTropa=  document.getElementById('numTropa');
     numTropa.addEventListener('input',function(){
         if (this.value.length > 6) 
@@ -40,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             return _listas_Tropas;
         }
         return {set_List_Tropas, get_List_Tropas, setLSList_Tropas, getLSList_Tropas};
-    
     })();
 
     const Tropas = (function(){
@@ -83,25 +81,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             return _tropa;
         }
         return {set_Tropa, get_Tropa};
-
     })();
-
-    if (localStorage.getItem("ls_tropas")) {
-        Tropas.getLS_Tropas();
-    }
-    tablaTropas();
-    agregarTropa.addEventListener("click", () => {
-        
-        agregarTropas();
-        tablaTropas();
-        
-    });
-    
-    btnGuardarLista.addEventListener("click", () => {
-        
-        guardarLista();
-
-    });
 
     function agregarTropas(){
 
@@ -250,34 +230,41 @@ document.addEventListener('DOMContentLoaded', () =>{
         return [dia, hoy, mes, anio];
     }
 
-    imprimir.disabled = true;
+    if (localStorage.getItem("ls_tropas")) {
+        Tropas.getLS_Tropas();
+    }
+    tablaTropas();
+    agregarTropa.addEventListener("click", () => {
+        agregarTropas();
+        tablaTropas();
+    });
+    
+    btnGuardarLista.addEventListener("click", () => {
+        guardarLista();
+    });
 
+    imprimir.disabled = true;
     sorteo.addEventListener("click", () => {
         imprimir.disabled = true;
         sortearTropa();
-
     });
 
 
     imprimir.addEventListener("click", () => {
-
         document.getElementById("body").innerHTML = ventanaPrint();
-
         window.print();
-
         location.reload();
-
     });
 
 
     btnElimList.addEventListener("click", () => {
-        deleteLista();
-
+        if (confirm('¿Seguro desea eliminar esta Lista?')){
+            deleteLista();
+            return;
+        }
     })
 
     function deleteLista(){
-
-        
         localStorage.removeItem("ls_tropas");
         location.reload();
     }
@@ -285,9 +272,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     function sortearTropa(){
 
         const tropas = cargarLSTropas();
-        
         const cantidad = tropas.length;
-        
         let contador = 0;
 
         tropaSorteada.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
@@ -311,14 +296,9 @@ document.addEventListener('DOMContentLoaded', () =>{
                     Tropa.set_Tropa(tropaSorteada.innerText) ;
                 }
             }, 50)
-    
         }, 1000)
-
-
     }
-
 });
-
 
 function cargarLSTropas(){
     
@@ -332,8 +312,8 @@ function cargarLSTropas(){
 }
 
 function tablaTropas(){
-    numTropa.focus();
 
+    numTropa.focus();
     const tropas = cargarLSTropas();
     let tablaTropa = ``;
     
@@ -342,7 +322,6 @@ function tablaTropas(){
         for (let i = 0; i < tropas.length; i++) {
             tablaTropa += `<tr><td>${i+1}</td><td>${tropas[i].tropa}</td><td>${tropas[i].lote}</td><td><button id="${i}" onclick="deleteTropa(${i})" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td></tr>`;
         }
-        
     }
     document.querySelector('#datatablesSimple tbody').innerHTML = tablaTropa;
 };
@@ -355,10 +334,7 @@ function deleteTropa(idx) {
     let tropas = cargarLSTropas();
 
     tropas.splice(idx, 1);
-
     tropas = JSON.stringify(tropas);
     localStorage.setItem("ls_tropas", tropas);
-
     location.reload();
-
 };
