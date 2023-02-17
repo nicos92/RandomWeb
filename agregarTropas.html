@@ -67,6 +67,28 @@
                             <img src="css/senasaV3.png" alt="">
                         </div>
                         <hr>
+
+                                            <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">La Tropa Sorteda es:</h5>
+                                        
+                                    </div>
+                                    <div class="modal-body" id="tropaSorteada">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                        <button id="imprimir" type="button" class="btn btn-primary" data-bs-dismiss="modal" >Imprimir</button>
+                                        <button id="closeModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <!-- FORMULARIO -->
 
@@ -97,6 +119,9 @@
                             
                             <div class="card-body">
                                 <div id="guardarLista" class="form-group mb-2"> 
+                                    <button id="sorteo" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-flag"></i>
+                                        Sortear
+                                    </button>
                                     <a id="btnGuardarLista" href="#" class="btn btn-success btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
@@ -109,6 +134,8 @@
                                         </span>
                                         <span class="text"> Ver Listas</span>
                                     </a>
+                                    <!-- <button id="btnElimList" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button> -->
+
                                 </div> 
                                 <table id="datatablesSimple">
                                     <thead>
