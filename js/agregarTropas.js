@@ -151,6 +151,172 @@ document.addEventListener('DOMContentLoaded', () =>{
         alert("No hay tropas por guardar");
     }
 
+    function ventanaPrint(){
+
+        const tropas = cargarLSTropas();
+
+        let [dia, hoy, mes, anio] = definirFecha();
+
+        let ventanaPrint = ``;
+        ventanaPrint += `<div id="layoutSidenav">`;
+        ventanaPrint += `<div class="modal-dialog">`;
+        ventanaPrint += `<div class="modal-content">`;
+
+        ventanaPrint += `<div class="modal-header">`;
+        ventanaPrint += `<h4 class="modal-title" id="exampleModalLabel">Resultado del Sorteo:</h4>`;
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `<div class="modal-body">`;
+        ventanaPrint += `<h5 class="modal-title" id="fecha">${dia + ", " +  hoy + " de "+  mes + " de "+  anio}</h5>`;
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `<div class="cuadro">`;
+        ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
+        ventanaPrint += `</div>`;
+
+
+        ventanaPrint += `<div class="card mb-4 col-lg-4 p-2" >`;
+        ventanaPrint += `<div class="card-header">`;
+        ventanaPrint += `<i class="fas fa-table me-1"></i>`;
+        ventanaPrint += `Lista de " Tropa - Lote "`;
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `<ol id="columnas">`;
+
+        for (let i = 0; i < tropas.length; i++) {
+            if (Tropa.get_Tropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
+                ventanaPrint += `<li class="text-white bg-dark rounded"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
+            }else{
+                ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
+            }
+        }
+
+        ventanaPrint += `</ol>`;
+
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `<div >`;
+        ventanaPrint += `<div class="modal-dialog">`;
+        ventanaPrint += `<div class="modal-content">`;
+        ventanaPrint += `<div class="modal-header">`;
+        ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Tropa Sorteada: " ${Tropa.get_Tropa()} "</h3>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `<div >`;
+        ventanaPrint += `<div class="modal-dialog">`;
+        ventanaPrint += `<div class="modal-content">`;
+        ventanaPrint += `<div class="modal-header">`;
+        ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Garron: </h3>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+        ventanaPrint += `</div>`;
+
+        ventanaPrint += `<div class="firmas"></div>`;
+        ventanaPrint += `<div class="firmas">`;
+        ventanaPrint += `<div class="firma">Firma</div>`;
+        ventanaPrint += `<div class="firma">Firma</div>`;
+        ventanaPrint += `</div>`;
+
+        return ventanaPrint;
+    }
+
+    function definirFecha(){
+        const fecha = new Date();
+        let anio = fecha.getFullYear(); // Año 2023
+        let mes = fecha.getMonth() + 1; // mes del 0 al 11
+        let hoy = fecha.getDate(); // fecha del 1 al 31
+        let dia = fecha.getDay(); // dia lunes, martes ...
+        // const hora = fecha.getHours();
+        // const minutos = fecha.getMinutes();
+        // const seg = fecha.getSeconds();
+        function getDia(dia){
+            const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+            return dias[ dia];
+        }
+        dia = getDia(dia);
+        function getMes(mes){
+            const meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+            return meses[ mes - 1];
+        }
+        mes = getMes(mes);
+        return [dia, hoy, mes, anio];
+    }
+
+    imprimir.disabled = true;
+
+    sorteo.addEventListener("click", () => {
+        imprimir.disabled = true;
+        sortearTropa();
+
+    });
+
+
+    imprimir.addEventListener("click", () => {
+
+        document.getElementById("body").innerHTML = ventanaPrint();
+
+        window.print();
+
+        location.reload();
+
+    });
+
+
+    btnElimList.addEventListener("click", () => {
+        deleteLista();
+
+    })
+
+    function deleteLista(){
+
+        
+        localStorage.removeItem("ls_tropas");
+        location.reload();
+    }
+
+    function sortearTropa(){
+
+        const tropas = cargarLSTropas();
+        
+        const cantidad = tropas.length;
+        
+        let contador = 0;
+
+        tropaSorteada.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+        tropaSorteada.style.fontWeight = "400";
+        tropaSorteada.style.backgroundColor = "";
+
+        setTimeout( () => {
+
+            const seleccion = setInterval(() => {
+
+                contador +=1;
+                let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+                tropaSorteada.innerHTML = tropas[ nroAzar -1].tropa + " - " + tropas[ nroAzar -1].lote;
+    
+                if( contador > 15){
+                    clearInterval(seleccion);
+                    contador = 0;
+                    tropaSorteada.style.fontWeight = "700";
+                    tropaSorteada.style.backgroundColor = "#AFEEEE";
+                    imprimir.disabled = false;
+                    Tropa.set_Tropa(tropaSorteada.innerText) ;
+                }
+            }, 50)
+    
+        }, 1000)
+
+
+    }
+
 });
 
 
