@@ -212,6 +212,33 @@ function definirFecha(){
     return [dia, hoy, mes, anio];
 };
 
+function agregarTropas(){
+
+    let lista = Lista_Tropas.getLSList_Tropas();
+    let tropas = lista[Idx.getId()];
+    let _numLote = numLote.value;
+    if( _numLote== "") _numLote = "01";
+
+    if (numTropa.value == '') {
+        alert("No hay tropa que agregar");
+        return;
+    }
+
+    let _Tropa = {
+        tropa: numTropa.value,
+        lote: _numLote
+    }
+
+    tropas.push(_Tropa);
+    Lista_Tropas.setLSList_Tropas();
+    location.reload();
+}
+
+    agregarTropa.addEventListener("click", () => {
+
+        agregarTropas();
+    })
+
     numList.innerText = `Lista "${Number(Idx.getLS_Id()) + 1}"`;
     imprimir.disabled = true;
     ventanaEditarTropa();

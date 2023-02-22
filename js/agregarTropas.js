@@ -272,31 +272,39 @@ document.addEventListener('DOMContentLoaded', () =>{
     function sortearTropa(){
 
         const tropas = cargarLSTropas();
-        const cantidad = tropas.length;
-        let contador = 0;
 
-        tropaSorteada.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
-        tropaSorteada.style.fontWeight = "400";
-        tropaSorteada.style.backgroundColor = "";
+        if (tropas != undefined) {
+            
+            const cantidad = tropas.length;
+            let contador = 0;
+            console.log(cantidad);
 
-        setTimeout( () => {
-
-            const seleccion = setInterval(() => {
-
-                contador +=1;
-                let nroAzar = Math.floor(Math.random() * cantidad) + 1;
-                tropaSorteada.innerHTML = tropas[ nroAzar -1].tropa + " - " + tropas[ nroAzar -1].lote;
+            tropaSorteada.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+            tropaSorteada.style.fontWeight = "400";
+            tropaSorteada.style.backgroundColor = "";
     
-                if( contador > 15){
-                    clearInterval(seleccion);
-                    contador = 0;
-                    tropaSorteada.style.fontWeight = "700";
-                    tropaSorteada.style.backgroundColor = "#AFEEEE";
-                    imprimir.disabled = false;
-                    Tropa.set_Tropa(tropaSorteada.innerText) ;
-                }
-            }, 50)
-        }, 1000)
+            setTimeout( () => {
+    
+                const seleccion = setInterval(() => {
+                    contador +=1;
+                    let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+                    tropaSorteada.innerHTML = tropas[ nroAzar -1].tropa + " - " + tropas[ nroAzar -1].lote;
+        
+                    if( contador > 15){
+                        clearInterval(seleccion);
+                        contador = 0;
+                        tropaSorteada.style.fontWeight = "700";
+                        tropaSorteada.style.backgroundColor = "#AFEEEE";
+                        imprimir.disabled = false;
+                        Tropa.set_Tropa(tropaSorteada.innerText) ;
+                    }
+                }, 50)
+            }, 1000)
+            
+            return;
+        }
+        
+        tropaSorteada.innerHTML = "No hay tropas Para Sortear";
     }
 });
 
