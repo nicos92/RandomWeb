@@ -1,6 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+
+        if (e.ip == "131.255.180.140") {
+
 
 
     const Tropa = (function(){
@@ -262,6 +266,8 @@ function agregarTropas(){
         }
 
     });
+
+}});
 
 
 });

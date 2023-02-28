@@ -1,6 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+
+        if (e.ip == "131.255.180.140") {
+
     const Tropa = (function(){
 
         let _tropa;
@@ -332,4 +336,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         mes = getMes(mes);
         return [dia, hoy, mes, anio];
     }
+
+}});
 });
