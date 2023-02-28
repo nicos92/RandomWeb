@@ -1,7 +1,14 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
-    const numTropa=  document.getElementById('numTropa');
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    // alert(e.ip);
+
+    if (e.ip == "181.46.77.221") {
+
+        console.log("hola");
+
+        const numTropa=  document.getElementById('numTropa');
     numTropa.addEventListener('input',function(){
         if (this.value.length > 6) 
         this.value = this.value.slice(0,6); 
@@ -306,6 +313,11 @@ document.addEventListener('DOMContentLoaded', () =>{
         
         tropaSorteada.innerHTML = "No hay tropas Para Sortear";
     }
+        
+    }
+});
+
+    
 });
 
 function cargarLSTropas(){
