@@ -23,16 +23,22 @@ const closure = (function(){
 
 })();
 
-    sorteo.addEventListener("click", () => {
-        iniSorteo();
-    })
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+        
+        if (e.ip == "131.255.180.140") {
 
-    imprimir.addEventListener("click", () => {
-        document.getElementById("body").innerHTML = ventanaPrint();
-        ventanaEditarSectores();
-        window.print();
-        location.reload();
-    });
+            sorteo.addEventListener("click", () => {
+                iniSorteo();
+            })
+
+            imprimir.addEventListener("click", () => {
+                document.getElementById("body").innerHTML = ventanaPrint();
+                ventanaEditarSectores();
+                window.print();
+                location.reload();
+            });
+
+        }});
 
 function ventanaEditarSectores(){
 

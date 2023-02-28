@@ -234,34 +234,42 @@ function agregarTropas(){
     location.reload();
 }
 
-    agregarTropa.addEventListener("click", () => {
 
-        agregarTropas();
-    })
+
 
     numList.innerText = `Lista "${Number(Idx.getLS_Id()) + 1}"`;
     imprimir.disabled = true;
     ventanaEditarTropa();
 
-    sorteo.addEventListener("click", () => {
-        imprimir.disabled = true;
-        sortearTropa();
-    });
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    
+        if (e.ip == "131.255.180.140") {
+            agregarTropa.addEventListener("click", () => {
 
-    imprimir.addEventListener("click", () => {
-        document.getElementById("body").innerHTML = ventanaPrint();
-        window.print();
-        location.reload();
+                agregarTropas();
+            });
 
-    });
+            sorteo.addEventListener("click", () => {
+                imprimir.disabled = true;
+                sortearTropa();
+            });
 
-    btnElimList.addEventListener("click", () => {
-        if (confirm('¿Seguro desea eliminar esta Lista?')){
-            deleteLista();
-            return;
+            imprimir.addEventListener("click", () => {
+                document.getElementById("body").innerHTML = ventanaPrint();
+                window.print();
+                location.reload();
+
+            });
+
+            btnElimList.addEventListener("click", () => {
+                if (confirm('¿Seguro desea eliminar esta Lista?')){
+                    deleteLista();
+                    return;
+                }
+
+            });
         }
-
-    });
+    });    
 
 
 });

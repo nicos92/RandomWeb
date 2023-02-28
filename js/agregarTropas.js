@@ -1,12 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
-    $.getJSON("http://api.ipify.org/?format=json", function(e) {
-    // alert(e.ip);
 
-    if (e.ip == "181.46.77.221") {
-
-        console.log("hola");
 
         const numTropa=  document.getElementById('numTropa');
     numTropa.addEventListener('input',function(){
@@ -240,36 +235,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     if (localStorage.getItem("ls_tropas")) {
         Tropas.getLS_Tropas();
     }
-    tablaTropas();
-    agregarTropa.addEventListener("click", () => {
-        agregarTropas();
-        tablaTropas();
-    });
-    
-    btnGuardarLista.addEventListener("click", () => {
-        guardarLista();
-    });
-
-    imprimir.disabled = true;
-    sorteo.addEventListener("click", () => {
-        imprimir.disabled = true;
-        sortearTropa();
-    });
 
 
-    imprimir.addEventListener("click", () => {
-        document.getElementById("body").innerHTML = ventanaPrint();
-        window.print();
-        location.reload();
-    });
 
-
-    btnElimList.addEventListener("click", () => {
-        if (confirm('¿Seguro desea eliminar esta Lista?')){
-            deleteLista();
-            return;
-        }
-    })
 
     function deleteLista(){
         localStorage.removeItem("ls_tropas");
@@ -284,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             
             const cantidad = tropas.length;
             let contador = 0;
-            console.log(cantidad);
 
             tropaSorteada.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
             tropaSorteada.style.fontWeight = "400";
@@ -313,9 +280,50 @@ document.addEventListener('DOMContentLoaded', () =>{
         
         tropaSorteada.innerHTML = "No hay tropas Para Sortear";
     }
-        
-    }
-});
+
+
+    
+    
+    
+    tablaTropas();
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    
+        if (e.ip == "131.255.180.140") {
+            agregarTropa.addEventListener("click", () => {
+                agregarTropas();
+                tablaTropas();
+            });
+            
+            btnGuardarLista.addEventListener("click", () => {
+                guardarLista();
+            });
+
+            imprimir.disabled = true;
+            sorteo.addEventListener("click", () => {
+                imprimir.disabled = true;
+                sortearTropa();
+            });
+
+
+            imprimir.addEventListener("click", () => {
+                document.getElementById("body").innerHTML = ventanaPrint();
+                window.print();
+                location.reload();
+            });
+
+
+            btnElimList.addEventListener("click", () => {
+                if (confirm('¿Seguro desea eliminar esta Lista?')){
+                    deleteLista();
+                    return;
+                }
+            });
+    
+        }});
+
+
+
+
 
     
 });

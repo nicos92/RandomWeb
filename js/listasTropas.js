@@ -139,21 +139,29 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     }
 
+
+
     if( Lista_Tropas.getLSList_Tropas().length == 0) windowCards.innerHTML += cardSinTropas();
 
     windowCards.innerHTML += cards();
 
     query();
 
-    imprimir.addEventListener("click", () => {
+    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    
+        if (e.ip == "131.255.180.140") {
 
-        document.getElementById("body").innerHTML = ventanaPrint();
+        imprimir.addEventListener("click", () => {
 
-        window.print();
+            document.getElementById("body").innerHTML = ventanaPrint();
 
-        location.reload();
+            window.print();
 
-    });
+            location.reload();
+
+        });
+
+    }});
 
 
 
@@ -332,4 +340,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         mes = getMes(mes);
         return [dia, hoy, mes, anio];
     }
+
+
 });
