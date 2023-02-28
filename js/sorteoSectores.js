@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    $.getJSON("http://api.ipify.org/?format=json", function(e) {
-
-        if (e.ip == "131.255.180.140") {
-
 const closure = (function(){
 
     const _sectores = ['Playa de faena',  "Cuarteo", "Despostada", "Menudencias", "Triperia", "Exteriores - Corrales", "Playa de Emergencias", "Melter", "Lavadero de Roldanas", "Nonatos", "Saladero"];
@@ -170,7 +166,5 @@ function definirFecha(){
 }
 
     ventanaEditarSectores();
-
-}});
 
 });

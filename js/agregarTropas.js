@@ -2,8 +2,11 @@
 document.addEventListener('DOMContentLoaded', () =>{
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    // alert(e.ip);
 
-    if (e.ip == "131.255.180.140") {
+    if (e.ip == "181.46.77.221") {
+
+        console.log("hola");
 
         const numTropa=  document.getElementById('numTropa');
     numTropa.addEventListener('input',function(){
