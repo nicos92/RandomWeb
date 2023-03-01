@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 
 
-        const numTropa=  document.getElementById('numTropa');
+    const numTropa=  document.getElementById('numTropa');
     numTropa.addEventListener('input',function(){
         if (this.value.length > 6) 
         this.value = this.value.slice(0,6); 
@@ -62,11 +62,10 @@ document.addEventListener('DOMContentLoaded', () =>{
             if( localStorage.getItem("ls_tropas")){
                 _tropas = localStorage.getItem("ls_tropas");
                 _tropas = JSON.parse(_tropas);
+                return _tropas;
             }
-            return _tropas;
         }
 
-        
         return {set_Tropas, get_Tropas, setLS_Tropas, getLS_Tropas};
     })();
 
@@ -246,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function sortearTropa(){
 
-        const tropas = cargarLSTropas();
+        const tropas = Tropas.get_Tropas();
 
         if (tropas != undefined) {
             
@@ -280,12 +279,15 @@ document.addEventListener('DOMContentLoaded', () =>{
         
         tropaSorteada.innerHTML = "No hay tropas Para Sortear";
     }
+    
+    Tropas.getLS_Tropas() ? (
+        tablaTropas(Tropas.getLS_Tropas()) 
+    ):(   
+        sorteo.disabled = true,
+        btnGuardarLista.disabled = true,
+        btnElimList.disabled = true
+    );
 
-
-    
-    
-    
-    tablaTropas();
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
     
         if (e.ip == "131.255.180.140") {
@@ -319,7 +321,8 @@ document.addEventListener('DOMContentLoaded', () =>{
                 }
             });
     
-        }});
+        }
+    });
 
 
 
@@ -339,10 +342,9 @@ function cargarLSTropas(){
     return;
 }
 
-function tablaTropas(){
+function tablaTropas(tropas){
 
     numTropa.focus();
-    const tropas = cargarLSTropas();
     let tablaTropa = ``;
     
     if (tropas) {

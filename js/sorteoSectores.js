@@ -24,6 +24,8 @@ const closure = (function(){
 })();
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
+
+    console.log(e);
         
         if (e.ip == "131.255.180.140") {
 
@@ -38,7 +40,8 @@ const closure = (function(){
                 location.reload();
             });
 
-        }});
+        }
+    });
 
 function ventanaEditarSectores(){
 
@@ -172,5 +175,9 @@ function definirFecha(){
 }
 
     ventanaEditarSectores();
+
+    $.getJSON('//freegeoip.net/json/?callback=?', function(data) {
+        console.log(data);
+    });
 
 });
