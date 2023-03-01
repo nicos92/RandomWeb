@@ -320,7 +320,6 @@ function deleteTropa(idx) {
     localStorage.setItem("ls_List_tropas", lista);
 
     if (tropas.length == 0) {
-        console.log(tropas.length);
         deleteLista();
         return;
     }
