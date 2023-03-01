@@ -24,14 +24,12 @@ const closure = (function(){
 })();
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
-
-    console.log(e);
         
         if (e.ip == "131.255.180.140") {
 
             sorteo.addEventListener("click", () => {
                 iniSorteo();
-            })
+            });
 
             imprimir.addEventListener("click", () => {
                 document.getElementById("body").innerHTML = ventanaPrint();
@@ -175,9 +173,5 @@ function definirFecha(){
 }
 
     ventanaEditarSectores();
-
-    $.getJSON('//freegeoip.net/json/?callback=?', function(data) {
-        console.log(data);
-    });
 
 });
