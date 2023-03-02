@@ -281,8 +281,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     );
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
+        console.log(localStorage.getItem("ls_per"));
+        console.log(e.ip);
     
-        if (e.ip == "131.255.180.140") {
+        if (e.ip == localStorage.getItem("ls_per")) {
             agregarTropa.addEventListener("click", () => {
                 agregarTropas();
                 tablaTropas();

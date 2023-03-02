@@ -243,7 +243,7 @@ function agregarTropas(){
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
     
-        if (e.ip == "131.255.180.140") {
+        if (e.ip == "181.46.77.225") {
             agregarTropa.addEventListener("click", () => {
 
                 agregarTropas();
