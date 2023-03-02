@@ -231,7 +231,17 @@ document.addEventListener('DOMContentLoaded', () =>{
         return [dia, hoy, mes, anio];
     }
 
+    if (localStorage.getItem("ls_tropas")) {
+        Tropas.getLS_Tropas();
+    }
 
+
+
+
+    function deleteLista(){
+        localStorage.removeItem("ls_tropas");
+        location.reload();
+    }
 
     function sortearTropa(){
 
@@ -269,11 +279,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         
         tropaSorteada.innerHTML = "No hay tropas Para Sortear";
     }
-
-
     
     Tropas.getLS_Tropas() ? (
-        tablaTropas(Tropas.getLS_Tropas())
+        tablaTropas(Tropas.getLS_Tropas()) 
     ):(   
         sorteo.disabled = true,
         btnGuardarLista.disabled = true,
@@ -318,6 +326,11 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     });
 
+
+
+
+
+    
 });
 
 function cargarLSTropas(){
@@ -355,16 +368,5 @@ function deleteTropa(idx) {
     tropas.splice(idx, 1);
     tropas = JSON.stringify(tropas);
     localStorage.setItem("ls_tropas", tropas);
-
-    if (tropas.length == 2) {
-        deleteLista();
-        return;
-    }
-
     location.reload();
 };
-
-function deleteLista(){
-    localStorage.removeItem("ls_tropas");
-    location.reload();
-}
