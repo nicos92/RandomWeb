@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-undef */
 
 document.addEventListener('DOMContentLoaded', () =>{
 
@@ -76,11 +78,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     })();
 
     function query(){
-        let lista = Lista_Tropas.getLSList_Tropas();
+        const lista = Lista_Tropas.getLSList_Tropas();
 
         for (let i= 0; i < lista.length; i++) 
         {
-            let tarjeta = document.getElementById("lista" + i);
+            const tarjeta = document.getElementById("lista" + i);
             tarjeta.addEventListener("click", (e) => {
                 imprimir.disabled = true;
         
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
             });
 
-            let btnEditar = document.getElementById("btnEditar" + i) ;
+            const btnEditar = document.getElementById("btnEditar" + i) ;
             btnEditar.addEventListener("click", (e) => {
 
                 let idArray = e.target.id;
@@ -106,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function sortearTropa(){
 
-        let listas_tropas = Lista_Tropas.getLSList_Tropas();
-        let lista = listas_tropas[Idx.getId()];
+        const listas_tropas = Lista_Tropas.getLSList_Tropas();
+        const lista = listas_tropas[Idx.getId()];
         let contador = 0;
 
         const cantidad = lista.length;
@@ -121,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             const seleccion = setInterval(() => {
 
                 contador +=1;
-                let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+                const nroAzar = Math.floor(Math.random() * cantidad) + 1;
                 tropaSorteada.innerHTML = lista[ nroAzar -1].tropa + " - " + lista[ nroAzar -1].lote;
     
                 if( contador > 15){
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 
 
-    if( Lista_Tropas.getLSList_Tropas().length == 0) windowCards.innerHTML += cardSinTropas();
+    if( Lista_Tropas.getLSList_Tropas().length === 0) windowCards.innerHTML += cardSinTropas();
 
     windowCards.innerHTML += cards();
 
@@ -149,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
     
-        if (e.ip == "181.46.77.225") {
+        if (e.ip === "181.46.77.225") {
 
         imprimir.addEventListener("click", () => {
 
@@ -167,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function cards(){
 
-        let listas_tropas = Lista_Tropas.getLSList_Tropas();
+        const listas_tropas = Lista_Tropas.getLSList_Tropas();
         let card = ``;
 
         for( let i=0 ; i <= listas_tropas.length - 1 ; i++){
@@ -243,10 +245,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function ventanaPrint(){
 
-        let lista = Lista_Tropas.getLSList_Tropas();
-        let tropas = lista[Idx.getId()];
+        const lista = Lista_Tropas.getLSList_Tropas();
+        const tropas = lista[Idx.getId()];
 
-        let [dia, hoy, mes, anio] = definirFecha();
+        const [dia, hoy, mes, anio] = definirFecha();
 
         let ventanaPrint = ``;
         ventanaPrint += `<div id="layoutSidenav">`;
@@ -279,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         ventanaPrint += `<ol id="columnas">`;
 
         for (let i = 0; i < tropas.length; i++) {
-            if (Tropa.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
+            if (Tropa.getTropa() === (tropas[i].tropa + " - " + tropas[i].lote)) {
                 ventanaPrint += `<li class="text-white bg-dark rounded"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
             }else{
                 ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
@@ -321,9 +323,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function definirFecha(){
         const fecha = new Date();
-        let anio = fecha.getFullYear(); // Año 2023
+        const anio = fecha.getFullYear(); // Año 2023
         let mes = fecha.getMonth() + 1; // mes del 0 al 11
-        let hoy = fecha.getDate(); // fecha del 1 al 31
+        const hoy = fecha.getDate(); // fecha del 1 al 31
         let dia = fecha.getDay(); // dia lunes, martes ...
         // const hora = fecha.getHours();
         // const minutos = fecha.getMinutes();

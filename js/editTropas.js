@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable camelcase */
 
 document.addEventListener('DOMContentLoaded', () =>{
 
@@ -75,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function sortearTropa(){
 
-        let listas_tropas = Lista_Tropas.getLSList_Tropas();
+        const listas_tropas = Lista_Tropas.getLSList_Tropas();
 
-        let lista = listas_tropas[Idx.getLS_Id()];
+        const lista = listas_tropas[Idx.getLS_Id()];
         let contador = 0;
 
         const cantidad = lista.length;
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             const seleccion = setInterval(() => {
 
                 contador +=1;
-                let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+                const nroAzar = Math.floor(Math.random() * cantidad) + 1;
     
                 
                 tropaSorteada.innerHTML = lista[nroAzar -1].tropa + " - " + lista[nroAzar -1].lote;
@@ -110,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 function ventanaPrint(){
 
-    let lista = Lista_Tropas.getLSList_Tropas();
-    let tropas = lista[Idx.getId()];
+    const lista = Lista_Tropas.getLSList_Tropas();
+    const tropas = lista[Idx.getId()];
 
-    let [dia, hoy, mes, anio] = definirFecha();
+    const [dia, hoy, mes, anio] = definirFecha();
 
     let ventanaPrint = ``;
     ventanaPrint += `<div id="layoutSidenav">`;
@@ -146,7 +148,7 @@ function ventanaPrint(){
     ventanaPrint += `<ol id="columnas">`;
 
     for (let i = 0; i < tropas.length; i++) {
-        if (Tropa.getTropa() == (tropas[i].tropa + " - " + tropas[i].lote)) {
+        if (Tropa.getTropa() === (tropas[i].tropa + " - " + tropas[i].lote)) {
             ventanaPrint += `<li class="text-white bg-dark rounded fw-bold"> ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
         }else{
             ventanaPrint += `<li > ${tropas[i].tropa + " - " + tropas[i].lote}</li>`;
@@ -189,13 +191,10 @@ function ventanaPrint(){
 function definirFecha(){
 
     const fecha = new Date();
-    let anio = fecha.getFullYear(); // Año 2023
+    const anio = fecha.getFullYear(); // Año 2023
     let mes = fecha.getMonth() + 1; // mes del 0 al 11
-    let hoy = fecha.getDate(); // fecha del 1 al 31
+    const hoy = fecha.getDate(); // fecha del 1 al 31
     let dia = fecha.getDay(); // dia lunes, martes ...
-    const hora = fecha.getHours();
-    const minutos = fecha.getMinutes();
-    const seg = fecha.getSeconds();
 
     function getDia(dia){
         const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
@@ -214,17 +213,17 @@ function definirFecha(){
 
 function agregarTropas(){
 
-    let lista = Lista_Tropas.getLSList_Tropas();
-    let tropas = lista[Idx.getId()];
+    const lista = Lista_Tropas.getLSList_Tropas();
+    const tropas = lista[Idx.getId()];
     let _numLote = numLote.value;
-    if( _numLote== "") _numLote = "01";
+    if( _numLote === "") _numLote = "01";
 
-    if (numTropa.value == '') {
+    if (numTropa.value === '') {
         alert("No hay tropa que agregar");
         return;
     }
 
-    let _Tropa = {
+    const _Tropa = {
         tropa: numTropa.value,
         lote: _numLote
     }
@@ -243,7 +242,7 @@ function agregarTropas(){
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
     
-        if (e.ip == "181.46.77.225") {
+        if (e.ip === "181.46.77.225") {
             agregarTropa.addEventListener("click", () => {
 
                 agregarTropas();
@@ -264,7 +263,7 @@ function agregarTropas(){
             btnElimList.addEventListener("click", () => {
                 if (confirm('¿Seguro desea eliminar esta Lista?')){
                     deleteLista();
-                    return;
+                    
                 }
 
             });
@@ -286,15 +285,15 @@ function cargarListaLS(){
 }
 
 function cargarIdLS(){
-    let _id;
-    _id = localStorage.getItem("ls_Id");
+    
+    const _id = localStorage.getItem("ls_Id");
     return _id;
 }
 
 function ventanaEditarTropa(){
 
-    let lista = cargarListaLS();
-    let tropas = lista[cargarIdLS()];
+    const lista = cargarListaLS();
+    const tropas = lista[cargarIdLS()];
 
 
     let ventanaEditTropa = ``;
@@ -305,6 +304,7 @@ function ventanaEditarTropa(){
     document.querySelector('#datatablesSimple tbody').innerHTML = ventanaEditTropa;
 };
 
+// eslint-disable-next-line no-unused-vars
 function deleteTropa(idx) {
 
     if (!confirm('¿Seguro desea eliminar esta Tropa?')){
@@ -312,14 +312,14 @@ function deleteTropa(idx) {
     }
 
     let lista = cargarListaLS();
-    let tropas = lista[cargarIdLS()];
+    const tropas = lista[cargarIdLS()];
 
     tropas.splice(idx, 1);
 
     lista = JSON.stringify(lista);
     localStorage.setItem("ls_List_tropas", lista);
 
-    if (tropas.length == 0) {
+    if (tropas.length === 0) {
         console.log(tropas.length);
         deleteLista();
         return;

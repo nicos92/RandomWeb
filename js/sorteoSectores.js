@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 document.addEventListener('DOMContentLoaded', () => {
 
 const closure = (function(){
@@ -25,7 +26,7 @@ const closure = (function(){
 
     $.getJSON("http://api.ipify.org/?format=json", function(e) {
         
-        if (e.ip == "181.46.77.225") {
+        if (e.ip === "181.46.77.225") {
 
             sorteo.addEventListener("click", () => {
                 iniSorteo();
@@ -43,7 +44,7 @@ const closure = (function(){
 
 function ventanaEditarSectores(){
 
-    let sectores = closure.getSectores();
+    const sectores = closure.getSectores();
     let ventanaEditSectores = ``;
     for (let i = 0; i < sectores.length; i++) {
         ventanaEditSectores += `<tr ><td>${i+1}</td><td>${sectores[i]}</td></tr>`;
@@ -64,11 +65,11 @@ function iniSorteo(){
 
         const seleccion = setInterval(() => {
 
-            let sectores = closure.getSectores();
+            const sectores = closure.getSectores();
 
             contador +=1;
             const cantidad = sectores.length;
-            let nroAzar = Math.floor(Math.random() * cantidad) + 1;
+            const nroAzar = Math.floor(Math.random() * cantidad) + 1;
             sectorSorteado.innerHTML = ` ${ nroAzar + " - " + sectores[ nroAzar -1]}`;
 
             if( contador > 15){
@@ -86,7 +87,7 @@ function iniSorteo(){
 
 function ventanaPrint(){
 
-    let [dia, hoy, mes, anio] = definirFecha();
+    const [dia, hoy, mes, anio] = definirFecha();
 
     let ventanaPrint = ``;
 
@@ -149,13 +150,11 @@ function ventanaPrint(){
 function definirFecha(){
 
     const fecha = new Date();
-    let anio = fecha.getFullYear(); // AÑo 2023
+    const anio = fecha.getFullYear(); // AÑo 2023
     let mes = fecha.getMonth() + 1; // mes del 0 al 11
-    let hoy = fecha.getDate(); // fecha del 1 al 31
+    const hoy = fecha.getDate(); // fecha del 1 al 31
     let dia = fecha.getDay(); // dia lunes, martes ...
-    const hora = fecha.getHours();
-    const minutos = fecha.getMinutes();
-    const seg = fecha.getSeconds();
+
 
     function getDia(dia){
         const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
