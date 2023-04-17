@@ -3,6 +3,8 @@
 
 document.addEventListener('DOMContentLoaded', () =>{
 
+    const FECHA = document.getElementById('txtFecha');
+
     const Tropa = (function(){
 
         let _tropa;
@@ -248,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         const lista = Lista_Tropas.getLSList_Tropas();
         const tropas = lista[Idx.getId()];
 
-        const [dia, hoy, mes, anio] = definirFecha();
+        const [dia, hoy, mes, anio] = getDateHTML();
 
         let ventanaPrint = ``;
         ventanaPrint += `<div id="layoutSidenav">`;
@@ -321,27 +323,33 @@ document.addEventListener('DOMContentLoaded', () =>{
         return ventanaPrint;
     }
 
-    function definirFecha(){
-        const fecha = new Date();
-        const anio = fecha.getFullYear(); // Año 2023
-        let mes = fecha.getMonth() + 1; // mes del 0 al 11
-        const hoy = fecha.getDate(); // fecha del 1 al 31
-        let dia = fecha.getDay(); // dia lunes, martes ...
-        // const hora = fecha.getHours();
-        // const minutos = fecha.getMinutes();
-        // const seg = fecha.getSeconds();
-        function getDia(dia){
-            const dias = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
-            return dias[ dia];
+    function getDateHTML(){
+        let txtFecha = FECHA.value.replace(/-/g, '\/')
+        let fecha 
+        if (txtFecha != '') {
+            fecha = new Date(txtFecha)
+        }else{
+            fecha = new Date()
         }
-        dia = getDia(dia);
-        function getMes(mes){
-            const meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julios", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-            return meses[ mes - 1];
+    
+        const anio = fecha.getFullYear() // Año 2023
+        let mes = fecha.getMonth() + 1 // mes del 0 al 11
+        const hoy = fecha.getDate()// fecha del 1 al 31
+        let dia = fecha.getDay() // dia lunes, martes ... del 0 al 6
+    
+        function getDia (dia) {
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+            return dias[dia]
         }
-        mes = getMes(mes);
-        return [dia, hoy, mes, anio];
-    }
+        dia = getDia(dia)
+        function getMes (mes) {
+          const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julios', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+          return meses[mes - 1]
+        }
+        mes = getMes(mes)
+        return [dia, hoy, mes, anio]
+    
+      }
 
 
 });

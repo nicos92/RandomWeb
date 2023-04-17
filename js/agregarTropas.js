@@ -3,6 +3,7 @@
 /* eslint-disable no-undef */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const FECHA = document.getElementById('txtFecha');
   const numTropa = document.getElementById('numTropa')
   numTropa.addEventListener('input', function () {
     if (this.value.length > 6) { this.value = this.value.slice(0, 6) }
@@ -123,8 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function ventanaPrint () {
     const tropas = cargarLSTropas()
+    const [dia, hoy, mes, anio] = getDateHTML();
 
-    const [dia, hoy, mes, anio] = definirFecha()
+    
 
     let ventanaPrint = ''
     ventanaPrint += '<div id="layoutSidenav">'
@@ -196,15 +198,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return ventanaPrint
   }
 
-  function definirFecha () {
-    const fecha = new Date()
+  function getDateHTML(){
+    let txtFecha = FECHA.value.replace(/-/g, '\/')
+    let fecha 
+    if (txtFecha != '') {
+        fecha = new Date(txtFecha)
+    }else{
+      fecha = new Date()
+    }
+
     const anio = fecha.getFullYear() // Año 2023
     let mes = fecha.getMonth() + 1 // mes del 0 al 11
-    const hoy = fecha.getDate() // fecha del 1 al 31
-    let dia = fecha.getDay() // dia lunes, martes ...
-    // const hora = fecha.getHours();
-    // const minutos = fecha.getMinutes();
-    // const seg = fecha.getSeconds();
+    const hoy = fecha.getDate()// fecha del 1 al 31
+    let dia = fecha.getDay() // dia lunes, martes ... del 0 al 6
+
     function getDia (dia) {
       const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
       return dias[dia]
@@ -216,7 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     mes = getMes(mes)
     return [dia, hoy, mes, anio]
+
   }
+
 
   if (localStorage.getItem('ls_tropas')) {
     Tropas.getLS_Tropas()
@@ -269,10 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
       )
 
   $.getJSON('http://api.ipify.org/?format=json', function (e) {
-    console.log(localStorage.getItem('ls_per'))
-    console.log(e.ip)
+
 
     if (e.ip === localStorage.getItem('ls_per')) {
+      
       agregarTropa.addEventListener('click', () => {
         agregarTropas()
         tablaTropas()
@@ -283,8 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       imprimir.disabled = true
+
       sorteo.addEventListener('click', () => {
         imprimir.disabled = true
+        getDateHTML(FECHA)
         sortearTropa()
       })
 
