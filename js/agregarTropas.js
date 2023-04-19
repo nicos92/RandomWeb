@@ -105,13 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
       let lista = Tropas.get_Tropas()
       console.log(lista)
 
-      const hash = {}
-      lista = lista.filter(function (item) {
-        const go = item.tropa !== undefined ? item.tropa + item.lote : item.tropa
-        const exists = !hash[go] || false
-        hash[go] = true
-        return exists
-      })
+
+      // FILTRA PARA QUE NO GUARDE OBJETOS REPETIDOS
+      // const hash = {}
+      // lista = lista.filter(function (item) {
+      //   const go = item.tropa !== undefined ? item.tropa + item.lote : item.tropa
+      //   const exists = !hash[go] || false
+      //   hash[go] = true
+      //   return exists
+      // })
 
       Lista_Tropas.set_List_Tropas(lista)
       Lista_Tropas.setLSList_Tropas()
@@ -277,10 +279,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btnElimList.disabled = true
       )
 
+
+      numTropa.focus()
   $.getJSON('http://api.ipify.org/?format=json', function (e) {
 
-
-    if (e.ip === localStorage.getItem('ls_per')) {
+      
+    if (e.ip === "181.46.77.225") {
       
       agregarTropa.addEventListener('click', () => {
         agregarTropas()
