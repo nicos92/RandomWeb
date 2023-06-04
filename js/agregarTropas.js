@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ventanaPrint += '</div>'
 
     ventanaPrint += '<div class="cuadro">'
-    ventanaPrint += '<img src="css/senasaV3.png" alt="">'
+    ventanaPrint += '<img src="imgs/senasaV3.png" alt="">'
     ventanaPrint += '</div>'
 
     ventanaPrint += '<div class="card mb-4 col-lg-4 p-2" >'
@@ -281,10 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       numTropa.focus()
-  $.getJSON('http://api.ipify.org/?format=json', function (e) {
+  //$.getJSON('http://api.ipify.org/?format=json', function (e) {
 
       
-    if (e.ip === "181.46.77.225") {
+   // if (e.ip === "181.46.77.225") {
       
       agregarTropa.addEventListener('click', () => {
         agregarTropas()
@@ -314,8 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
           deleteLista()
         }
       })
-    }
-  })
+    //}
+  //})
 })
 
 function cargarLSTropas () {

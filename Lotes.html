@@ -14,12 +14,13 @@
         <link href="css/styles.css" rel="stylesheet" />
 
         <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/bootstrap.css">
 
         <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
         <script src="assets/demo/all.js"></script>
+
         <script src="js/jquery.js"></script>
-        <script src="js/agregarTropas.js"></script>
+        <script src="js/lotes.js"></script>
 
     </head>
     <body id="body" class="sb-nav-fixed">
@@ -35,7 +36,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Sorteos</div>
-                            
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Tropas
@@ -55,33 +56,33 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Lotes
                             </a>
+                            <div class="form-group"> 
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <label for="txtFecha" class="control-label">Fecha: </label>
+                                <input id="txtFecha" class="form-control" type="date">
+                            </div>  
 
                         </div>
+                        
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div id="contenedor" class="container-fluid px-4">
-                        <h1 class="mt-4">Crear Lista de Tropas                         
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Lotes                         
 
                         </h1>
-                        
-                        <div class="cuadro">
-                            <img src="imgs/senasaV3.png" alt="">
-                        </div>
                         <hr>
-                        <!-- <div class="container-fluid px-4"><i class="fas fa-calendar fa-2x text-gray-300"></i><label for="txtFecha">Fecha: </label><input id="txtFecha" type="date"></div> -->
-
-                                            <!-- Modal -->
+                        <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">La Tropa Sorteda es:</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">El Lote Sorteado es:</h5>
                                         
                                     </div>
-                                    <div class="modal-body" id="tropaSorteada">
+                                    <div class="modal-body" id="sectorSorteado">
                                         <div class="spinner-border text-primary" role="status">
                                             <span class="visually-hidden">Loading...</span>
                                         </div>
@@ -94,82 +95,52 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- FORMULARIO -->
 
-                        <form >
-
-                            <div class="form-group"> 
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                <label for="txtFecha" class="control-label">Fecha: </label>
-                                <input id="txtFecha" class="form-control" type="date">
-                            </div>  
-                            <div class="form-group"> 
-                                <label for="numTropa" class="control-label">Numero de Tropa</label>
-                                <input type="number" class="form-control" id="numTropa" name="tropa" placeholder="156001" >
-                            </div>    
-                        
-                            <div class="form-group"> 
-                                <label for="numLote" class="control-label">Numero de Lote</label>
-                                <input type="number" class="form-control" id="numLote" name="lote" placeholder="01">
-                            </div>      
- 
-                            <br>
-                            <div class="form-group"> 
-                                <button id="agregarTropa"  type="submit"  class="btn btn-primary"><i class="fas fa-check"></i> Agregar Tropa</button>
-
-                            </div>  
-                            <hr>
-                            
-                        </form> 
-
-                        <div class="card mb-4 col-lg-6" >
-                            <div class="card-header"><i class="fas fa-table me-1"></i> Lista </div>
-                            
-
-                            
-                            <div class="card-body">
-                                <div id="guardarLista" class="form-group mb-2"> 
-                                    <button id="sorteo" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-flag"></i>
-                                        Sortear
-                                    </button>
-                                    <button id="btnGuardarLista" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i>
-                                        Guardar Lista
-                                    </button>
-
-                                    <!-- <a id="btnGuardarLista" href="#" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span class="text">Guardar  Lista</span>
-                                    </a>                        -->
-                                    <a href="listasTropas.html" class="btn btn-secondary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                        <span class="text"> Ver Listas</span>
-                                    </a>
-                                    <button id="btnElimList" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-
-                                </div> 
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th >Nº Ord.</th>
-                                            <th >Tropa</th>
-                                            <th >Lote</th>
-                                            <th >Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-
-                                </table>
-                            </div>
+                        <div class="cuadro">
+                            <img src="imgs/senasaV3.png" alt="">
+            
                         </div>
 
 
+                        <!-- cuerpo -->
+                        <div class="container-fluid px-12 ">
+                            <h3>Servicio de Inspección Veterinaria</h3>
+                            <h3> Estableciemiento Nº Oficial 1352 Santa Giulia S.A.</h3>
+                            <h5 class="mt-4">Muestreo de Escherichia Coli (STEC) Y Salmonella - Circular 4210 B</h5>
+
+
+                        </div>
+
+                        <hr>
+                        <form >
+
+
+                            <div class="form-group"> 
+                                <label for="loteInicial" class="control-label">Lote Inicial</label>
+                                <input type="number" class="form-control" id="loteInicial" name="loteInicial" placeholder="1" >
+                            </div>    
                         
+                            <div class="form-group"> 
+                                <label for="loteFinal" class="control-label">Lote Final</label>
+                                <input type="number" class="form-control" id="loteFinal" name="loteFinal" placeholder="5">
+                            </div> 
+                            <div class="form-group"> 
+                                <label for="actaTxt" class="control-label">Acta Nº1352-BO-STEC-</label>
+                                <input type="text" class="form-control" id="actaTxt" name="acta" placeholder="08/2023">
+                            </div>  
+                            <br> 
+                            <button id="sorteo" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-flag"></i>
+                                Sortear
+                            </button>   
+
+                            <br>
+
+                            <hr>
+                            
+                        </form> 
+                        <!-- cuerpo -->
+
+
                     </div>
                 </main>
             </div>
@@ -186,6 +157,7 @@
         <script src="assets/demo/simpleDataTable.js"></script>
 
         <script src="js/datatables-simple-demo.js"></script>
+        
 
     </body>
 </html>

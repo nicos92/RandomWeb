@@ -135,7 +135,7 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
 
     ventanaPrint += `<div class="cuadro">`;
-    ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
+    ventanaPrint += `<img src="imgs/senasaV3.png" alt="">`;
     ventanaPrint += `</div>`;
 
 
@@ -194,7 +194,7 @@ function getDateHTML(){
     if (txtFecha != '') {
         fecha = new Date(txtFecha)
     }else{
-      fecha = new Date()
+        fecha = new Date()
     }
 
     const anio = fecha.getFullYear() // Año 2023
@@ -203,18 +203,18 @@ function getDateHTML(){
     let dia = fecha.getDay() // dia lunes, martes ... del 0 al 6
 
     function getDia (dia) {
-      const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
-      return dias[dia]
+        const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+        return dias[dia]
     }
     dia = getDia(dia)
     function getMes (mes) {
-      const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julios', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-      return meses[mes - 1]
+        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julios', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        return meses[mes - 1]
     }
     mes = getMes(mes)
     return [dia, hoy, mes, anio]
 
-  }
+    }
 
 function agregarTropas(){
 
@@ -245,9 +245,9 @@ function agregarTropas(){
     imprimir.disabled = true;
     ventanaEditarTropa();
 
-    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    //$.getJSON("http://api.ipify.org/?format=json", function(e) {
     
-        if (e.ip === "181.46.77.225") {
+        //if (e.ip === "181.46.77.225") {
             agregarTropa.addEventListener("click", () => {
 
                 agregarTropas();
@@ -272,8 +272,8 @@ function agregarTropas(){
                 }
 
             });
-        }
-    });    
+        //}
+    //});    
 
 
 });

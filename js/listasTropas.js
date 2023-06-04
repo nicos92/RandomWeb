@@ -151,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     query();
 
-    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    //$.getJSON("http://api.ipify.org/?format=json", function(e) {
     
-        if (e.ip === "181.46.77.225") {
+        //if (e.ip === "181.46.77.225") {
 
         imprimir.addEventListener("click", () => {
 
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         });
 
-    }});
+    //}});
 
 
 
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         ventanaPrint += `</div>`;
 
         ventanaPrint += `<div class="cuadro">`;
-        ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
+        ventanaPrint += `<img src="imgs/senasaV3.png" alt="">`;
         ventanaPrint += `</div>`;
 
 
@@ -343,13 +343,13 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
         dia = getDia(dia)
         function getMes (mes) {
-          const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julios', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-          return meses[mes - 1]
+            const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julios', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+            return meses[mes - 1]
         }
         mes = getMes(mes)
         return [dia, hoy, mes, anio]
     
-      }
+        }
 
 
 });

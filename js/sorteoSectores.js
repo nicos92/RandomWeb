@@ -25,9 +25,9 @@ const closure = (function(){
 
 })();
 
-    $.getJSON("http://api.ipify.org/?format=json", function(e) {
+    //$.getJSON("http://api.ipify.org/?format=json", function(e) {
         
-        if (e.ip === "181.46.77.225") {
+        //if (e.ip === "181.46.77.225") {
 
             sorteo.addEventListener("click", () => {
                 iniSorteo();
@@ -40,8 +40,8 @@ const closure = (function(){
                 location.reload();
             });
 
-        }
-    });
+        //}
+    //});
 
 function ventanaEditarSectores(){
 
@@ -107,7 +107,7 @@ function ventanaPrint(){
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `<div class="cuadro">`;
-    ventanaPrint += `<img src="css/senasaV3.png" alt="">`;
+    ventanaPrint += `<img src="imgs/senasaV3.png" alt="">`;
     ventanaPrint += `</div>`;
     ventanaPrint += `<div class="card mb-4 col-lg-6" >`;
     ventanaPrint += `<div class="card-header">`;
