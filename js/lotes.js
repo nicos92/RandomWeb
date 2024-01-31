@@ -199,22 +199,31 @@ function ventanaPrint(){
     ventanaPrint += `</form> `;
     ventanaPrint += `<!-- cuerpo -->`;
 
-    ventanaPrint += `<div >`;
-    ventanaPrint += `<div class="modal-dialog">`;
+  
+    ventanaPrint += `<div class="modal-dialog mb-5">`;
     ventanaPrint += `<div class="modal-content">`;
+
     ventanaPrint += `<div class="modal-header">`;
     ventanaPrint += `<h3 class="modal-title" id="sectorSorteado">Lote Elegido: " ${_NROAZAR.get_nroAzar()} "</h3>`;
     ventanaPrint += `</div>`;
-    ventanaPrint += `</div>`;
+
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
 
-    ventanaPrint += `<div class="firmas">`;
-    ventanaPrint += `</div>`;
-    ventanaPrint += `<div class="firmas">`;
+
+
+    ventanaPrint += `<footer class="footer mt-5 py-3 bg-body-tertiary">`;
+
+
+    ventanaPrint += `<div class="firmas mt-4">`;
     ventanaPrint += `<div class="firma">Firma SIV</div>`;
     ventanaPrint += `<div class="firma">Firma Dep. Calidad</div>`;
     ventanaPrint += `</div>`;
+
+
+
+
+            ventanaPrint += `</footer>`;
 
     return ventanaPrint;
 }
