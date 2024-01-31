@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let ventanaPrint = ''
     ventanaPrint += '<div id="layoutSidenav">'
+    ventanaPrint += `<div class="row ps-5 align-items-center">`
     ventanaPrint += '<div class="modal-dialog">'
     ventanaPrint += '<div class="modal-content">'
 
@@ -150,8 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ventanaPrint += '<div class="cuadro">'
     ventanaPrint += '<img src="imgs/senasaV3.png" alt="">'
     ventanaPrint += '</div>'
+    ventanaPrint += '</div>'
 
-    ventanaPrint += '<div class="card mb-4 col-lg-4 p-2" >'
+    ventanaPrint += '<div class="card m-4 col-lg-4 p-2" >'
     ventanaPrint += '<div class="card-header">'
     ventanaPrint += '<i class="fas fa-table me-1"></i>'
     ventanaPrint += 'Lista de " Tropa - Lote "'

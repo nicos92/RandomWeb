@@ -137,32 +137,37 @@ function ventanaPrint(){
 
     ventanaPrint += `<div id="layoutSidenav">`;
     
+    ventanaPrint += `<div class="row ps-5 align-items-center">`;
     ventanaPrint += `<div class="modal-dialog">`;
     ventanaPrint += `<div class="modal-content">`;
+
     ventanaPrint += `<div class="modal-header">`;
-                        
     ventanaPrint += `<h4 class="modal-title" id="exampleModalLabel">Resultado del Sorteo:</h4>`;
     ventanaPrint += `</div>`;
+
     ventanaPrint += `<div class="modal-body">`;
     ventanaPrint += `<h5 class="modal-title" id="fecha">${dia + ", " +  hoy + " de "+  mes + " de "+  anio}</h5>`;
     ventanaPrint += `</div>`;
+
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
     ventanaPrint += `</div>`;
+
     ventanaPrint += `<div class="cuadro">`;
     ventanaPrint += `<img src="imgs/senasaV3.png" alt="">`;
     ventanaPrint += `</div>`;
+    ventanaPrint += `</div>`;
 
     ventanaPrint += `<!-- cuerpo -->`;
-    ventanaPrint += `<div class="container-fluid px-12 ">`;
+    ventanaPrint += `<div class="container-fluid m-5 ">`;
     ventanaPrint += ` <h3>Servicio de Inspección Veterinaria</h3>`;
     ventanaPrint += `  <h3> Estableciemiento Nº Oficial 1352 Santa Giulia S.A.</h3>`;
     ventanaPrint += `  <h5 class="mt-4">Muestreo de Escherichia Coli (STEC) Y Salmonella - Circular 4210 B</h5>`;
-
-
     ventanaPrint += `</div>`;
 
     ventanaPrint += `<hr>`;
+
+    ventanaPrint += `<div class="container-fluid m-5 ">`;
     ventanaPrint += `<form >`;
     ventanaPrint += `  <div class="form-group"> `;
     ventanaPrint += `     <label for="mes" class="control-label">Mes de muestreo</label>`;
@@ -186,6 +191,7 @@ function ventanaPrint(){
     ventanaPrint += `       <label for="numLote" class="control-label">Acta Nº1352-BO-STEC-</label>`;
     ventanaPrint += `       <input type="text" class="form-control" id="numLote" name="lote" value="${_ACTA.get_acta()}">`;
     ventanaPrint += `   </div>  `;
+    ventanaPrint += `</div>`;
     ventanaPrint += `   <br> `;
 
     ventanaPrint += `    <hr>`;
